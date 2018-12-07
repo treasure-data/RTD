@@ -1,15 +1,26 @@
 #' @include utilities.R
 NULL
 
-db.list <- function() {
-  return(.td.execute("db:list"), format = TRUE)
+#' Show database list
+#' @export
+db_list <- function() {
+  return(td_execute("db:list", format = TRUE))
 }
 
-db.show <- function(dbname) {
-  return(.td.execute("db:show", dbname, format = TRUE))
+#' Describe information of a database
+#' @export
+db_show <- function(dbname) {
+  return(td_execute("db:show", dbname, format = TRUE))
 }
 
-db.create <- function(dbname) {
-  return(.td.execute("db:create", dbname, intern = FALSE))
+#' Create a database
+#' @export
+db_create <- function(dbname) {
+  return(td_execute("db:create", dbname, intern = FALSE))
 }
 
+#' Delete a database
+#' @export
+db_delete <- function(dbname) {
+  return(td_execute("db:delete", c(dbname, "-f"), intern = FALSE))
+}
