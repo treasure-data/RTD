@@ -2,6 +2,8 @@
 
 RTD is an official R client for Arm Treasure Data. It aims to make it simple to handle or connect from R to TD.
 
+Since RTD covers only basic execution on TD, we recommend to use RPresto or RJDBC for querying.
+
 ## Requirements
 
 Since current implementation is a simple wrapper of TD toolbelt. Ensure you've installed TD toolbelt and set PATH for it.
