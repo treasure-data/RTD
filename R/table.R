@@ -28,11 +28,12 @@ table_exists <- function(dbname, table) {
 #' Show list of tables
 #'
 #' @param dbname Data base name. Optional.
+#' @param timeout Time out seconds for executing td command. It prevents long executing to list without dbname.
 #'
 #' @export
 #'
-table_list <- function(dbname = NULL) {
-  return(td_execute("table:list", dbname, format = TRUE))
+table_list <- function(dbname = NULL, timeout = 300) {
+  return(td_execute("table:list", dbname, format = TRUE, timeout = timeout))
 }
 
 #' Create a table

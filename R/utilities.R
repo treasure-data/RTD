@@ -1,12 +1,9 @@
 #' Execute td command
 #'
 #' @param command First argument for td command. e.g. db:list
-#' @param opts Options for td command. Carachter or character vector
-#' @param format Flag for parsing td command output as TSV
-#' @param intern Flag for intern the output of system function
-#' @param quiet Suppress warning for td command
+#' @param timeout Timeout seconds for executing td command.
 #'
-td_execute <- function(command, opts, format = FALSE, intern = TRUE, quiet = FALSE) {
+td_execute <- function(command, opts, format = FALSE, intern = TRUE, quiet = FALSE, timeout = FALSE) {
   # Check if td command exists
   td_version()
 
@@ -23,7 +20,7 @@ td_execute <- function(command, opts, format = FALSE, intern = TRUE, quiet = FAL
       if(quiet) {
         options(warn = -1)
       }
-      ret <- system2("td", cmd, stdout = TRUE)
+      ret <- system2("td", cmd, stdout = TRUE, timeout = timeout)
       if(quiet) {
         options(warn = 0)
       }
