@@ -1,6 +1,10 @@
 #' Execute td command
 #'
 #' @param command First argument for td command. e.g. db:list
+#' @param opts Options for td command. \code{carachter} or \code{vector} of \code{character}.
+#' @param format Flag for parsing td command output as TSV.
+#' @param intern Flag for intern the output of system function.
+#' @param quiet Suppress warning for td command.
 #' @param timeout Timeout seconds for executing td command.
 #'
 td_execute <- function(command, opts, format = FALSE, intern = TRUE, quiet = FALSE, timeout = FALSE) {
@@ -25,7 +29,7 @@ td_execute <- function(command, opts, format = FALSE, intern = TRUE, quiet = FAL
         options(warn = 0)
       }
       if(format) {
-      return(.as.df(ret))
+        return(.as.df(ret))
       }
       return(ret)
     }, error = function(err) {

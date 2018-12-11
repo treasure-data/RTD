@@ -1,2 +1,4 @@
 ^RTD\.Rproj$
 ^\.Rproj\.user$
+\.log$
+^out$

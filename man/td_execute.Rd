@@ -5,18 +5,20 @@
 \title{Execute td command}
 \usage{
 td_execute(command, opts, format = FALSE, intern = TRUE,
-  quiet = FALSE)
+  quiet = FALSE, timeout = FALSE)
 }
 \arguments{
 \item{command}{First argument for td command. e.g. db:list}
 
-\item{opts}{Options for td command. Carachter or character vector}
+\item{opts}{Options for td command. Carachter or character vector.}
 
-\item{format}{Flag for parsing td command output as TSV}
+\item{format}{Flag for parsing td command output as TSV.}
 
-\item{intern}{Flag for intern the output of system function}
+\item{intern}{Flag for intern the output of system function.}
 
-\item{quiet}{Suppress warning for td command}
+\item{quiet}{Suppress warning for td command.}
+
+\item{timeout}{Timeout seconds for executing td command.}
 }
 \description{
 Execute td command

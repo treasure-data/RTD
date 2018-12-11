@@ -5,7 +5,7 @@
 \title{Import file to TD. Equivalent with td import:auto}
 \usage{
 import_auto(dest, file_name, delimiter, column_types, time_value,
-  format = "csv", header = TRUE)
+  format = "csv", header = TRUE, quote)
 }
 \arguments{
 \item{dest}{Destination for TD. `db_name.table_name`}

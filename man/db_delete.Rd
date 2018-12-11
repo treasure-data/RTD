@@ -6,6 +6,9 @@
 \usage{
 db_delete(dbname)
 }
+\arguments{
+\item{dbname}{Target data base name}
+}
 \description{
 Delete a database
 }

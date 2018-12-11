@@ -6,6 +6,9 @@
 \usage{
 db_show(dbname)
 }
+\arguments{
+\item{dbname}{Target data base name}
+}
 \description{
 Describe information of a database
 }

@@ -4,10 +4,12 @@
 \alias{table_list}
 \title{Show list of tables}
 \usage{
-table_list(dbname = NULL)
+table_list(dbname = NULL, timeout = 300)
 }
 \arguments{
 \item{dbname}{Data base name. Optional.}
+
+\item{timeout}{Time out seconds for executing td command. It prevents long executing to list without dbname.}
 }
 \description{
 Show list of tables

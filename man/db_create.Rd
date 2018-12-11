@@ -6,6 +6,9 @@
 \usage{
 db_create(dbname)
 }
+\arguments{
+\item{dbname}{Target data base name}
+}
 \description{
 Create a database
 }
