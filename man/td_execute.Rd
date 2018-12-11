@@ -10,7 +10,7 @@ td_execute(command, opts, format = FALSE, intern = TRUE,
 \arguments{
 \item{command}{First argument for td command. e.g. db:list}
 
-\item{opts}{Options for td command. Carachter or character vector.}
+\item{opts}{Options for td command. \code{carachter} or \code{vector} of \code{character}.}
 
 \item{format}{Flag for parsing td command output as TSV.}
 

@@ -4,10 +4,12 @@
 \alias{db_show}
 \title{Describe information of a database}
 \usage{
-db_show(dbname)
+db_show(dbname, quiet = FALSE)
 }
 \arguments{
 \item{dbname}{Target data base name}
+
+\item{quiet}{Suppress td command warning}
 }
 \description{
 Describe information of a database
