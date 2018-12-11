@@ -19,9 +19,21 @@ import_auto <- function(
     delimiter,
     column_types,
     time_value,
-    format = 'csv',
+    format,
     header = TRUE,
-    quote) {
+    quote
+  ) {
+
+  # Guess format from file extension if format missing. Default is 'csv'
+  if(missing(format)) {
+    ext <- tolower(tools::file_ext(file_name))
+    format <- switch(ext,
+      'csv' = 'csv',
+      'tsv' = 'tsv',
+      'json' = 'json',
+      'csv'
+    )
+  }
   opts <- c("--format", format, "--auto-create ", dest)
   if(header) {
     opts <- c(opts, "--column-header")
