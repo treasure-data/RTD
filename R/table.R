@@ -22,7 +22,7 @@ table_show <- function(dbname, table, quiet = FALSE) {
 #'
 table_exists <- function(dbname, table) {
   ret <- table_show(dbname, table, quiet = TRUE)
-  return(is.null(attr(ret, "status")))
+  return(!isFALSE(ret))
 }
 
 #' Show list of tables

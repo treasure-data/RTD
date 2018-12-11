@@ -28,6 +28,10 @@ td_execute <- function(command, opts, format = FALSE, intern = TRUE, quiet = FAL
       if(quiet) {
         options(warn = 0)
       }
+      # If database or table doesn't exist ret has "status" attribute
+      if(!is.null(attr(ret, "status"))) {
+        return(FALSE)
+      }
       if(format) {
         return(.as.df(ret))
       }

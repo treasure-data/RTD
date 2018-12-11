@@ -10,10 +10,22 @@ db_list <- function() {
 #' Describe information of a database
 #'
 #' @param dbname Target data base name
+#' @param quiet Suppress td command warning
 #'
 #' @export
-db_show <- function(dbname) {
-  return(td_execute("db:show", dbname, format = TRUE))
+db_show <- function(dbname, quiet = FALSE) {
+  return(td_execute("db:show", dbname, format = TRUE, quiet = quiet))
+}
+
+#' Check table existance
+#'
+#' @param dbname Data base name
+#'
+#' @export
+#'
+db_exists <- function(dbname) {
+  ret <- db_show(dbname, quiet = TRUE)
+  return(!isFALSE(ret))
 }
 
 #' Create a database
