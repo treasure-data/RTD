@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "chezou@gmail.com")
 Description: RTD execute TD toolbelt.
-License: MIT
+License: Apache License 2.0 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
