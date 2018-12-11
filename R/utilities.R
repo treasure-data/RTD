@@ -24,7 +24,10 @@ td_execute <- function(command, opts, format = FALSE, intern = TRUE, quiet = FAL
       if(quiet) {
         options(warn = 0)
       }
+      if(format) {
       return(.as.df(ret))
+      }
+      return(ret)
     }, error = function(err) {
       return(FALSE)
     })
