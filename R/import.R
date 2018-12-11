@@ -13,7 +13,15 @@ NULL
 #' @param quote CSV/TSV option. [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
 #' @export
 #'
-import_auto <- function(dest, file_name, delimiter, column_types, time_value, format='csv', header=TRUE) {
+import_auto <- function(
+    dest,
+    file_name,
+    delimiter,
+    column_types,
+    time_value,
+    format = 'csv',
+    header = TRUE,
+    quote) {
   opts <- c("--format", format, "--auto-create ", dest)
   if(header) {
     opts <- c(opts, "--column-header")
@@ -23,6 +31,9 @@ import_auto <- function(dest, file_name, delimiter, column_types, time_value, fo
   }
   if(!missing(column_types)) {
     opts <- c(opts, "--column-types", paste(column_types, collapse = ','))
+  }
+  if(!missing(quote)) {
+    opts <- c(opts, "--quote", quote)
   }
   if(missing(time_value)) {
     time_value <- round(as.numeric(Sys.time()))
