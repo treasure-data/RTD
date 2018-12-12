@@ -17,7 +17,7 @@ db_show <- function(dbname, quiet = FALSE) {
   return(td_execute("db:show", dbname, format = TRUE, quiet = quiet))
 }
 
-#' Check table existance
+#' Check table existence
 #'
 #' @param dbname Data base name
 #'

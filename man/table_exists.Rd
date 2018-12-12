@@ -2,7 +2,7 @@
 % Please edit documentation in R/table.R
 \name{table_exists}
 \alias{table_exists}
-\title{Check table existance}
+\title{Check table existence}
 \usage{
 table_exists(dbname, table)
 }
@@ -12,5 +12,5 @@ table_exists(dbname, table)
 \item{table}{Table name}
 }
 \description{
-Check table existance
+Check table existence
 }

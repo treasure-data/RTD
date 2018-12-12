@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 \.log$
 ^out$
+\.Rmd$
+\.html$
+^error-records$

@@ -1,0 +1,109 @@
+---
+title: "Access Arm Treasure Data from R with RPresto and RTD"
+output:
+  html_document:
+    df_print: paged
+---
+
+This is an example notebook to connect Arm Treasure Data (TD) from R. If you want to know how to access from R with RJDBC or RPresto, you can see [How to connect Arm Treasure Data from R](https://rpubs.com/chezou/TD-from-R).
+
+While RPresto enables you to query TD easily, it can't handle some TD execution. In this notebook, I will explain how to query with RPresto and how to execute basic TD operation.
+
+Before installing R packages, you have to install [TD toolbelt](https://toolbelt.treasuredata.com/). Ensure PATH for `td` command to be set appropriately. You also have to set your "TD_API_KEY" is set as an environement variable.
+
+Let's install RPresto and RTD packages.
+
+```{r eval=FALSE}
+install.packages(c("RPresto", "devtools", "dplyr"))
+devtools::install_github("chezou/RTD")
+```
+
+We will use nycflights13 package for analysis. Copy flights data to TD.
+
+```{r eval=FALSE}
+install.packages("nycflights13")
+```
+
+```{r}
+library(RTD)
+
+td_upload("test", "flights", nycflights13::flights )
+```
+
+
+Since RPresto v1.3.2 lacks [adding headers for some funcitons](https://github.com/prestodb/RPresto/issues/103), we need to set `httr` config.
+
+```{r}
+library(RPresto)
+
+httr::set_config(
+  httr::add_headers("X-Presto-User"=Sys.getenv("TD_API_KEY"))
+)
+```
+
+
+```{r}
+library(dplyr)
+
+db <- src_presto(
+  host="https://api-presto.treasuredata.com",
+  port=443,
+  user=Sys.getenv("TD_API_KEY"),
+  schema='test',
+  catalog='td-presto'  
+)
+
+flights_tbl <- tbl(db, 'flights')
+```
+
+Execute simple dplyr operation.
+
+```{r}
+# filter by departure delay
+flights_tbl %>% filter(dep_delay == 2)
+```
+
+["Introduction to dplyr"](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html) introduces advanced dplyr examples. Let's try grouped operations example from the tutorial and plot the result. 
+
+```{r}
+delay <- flights_tbl %>% 
+  group_by(tailnum) %>%
+  summarise(count = n(), dist = mean(distance), delay = mean(arr_delay)) %>%
+  filter(count > 20, dist < 2000, !is.na(delay)) %>%
+  collect
+
+# plot delays
+library(ggplot2)
+ggplot(delay, aes(dist, delay)) +
+  geom_point(aes(size = count), alpha = 1/2) +
+  geom_smooth() +
+  scale_size_area(max_size = 2)
+```
+
+You can write SQL using `DBI` package.
+
+```{r}
+library(DBI)
+
+con <- dbConnect(
+  RPresto::Presto(),
+  host="https://api-presto.treasuredata.com",
+  port=443,
+  user=Sys.getenv("TD_API_KEY"),
+  schema='test',
+  catalog='td-presto'
+)
+
+flights_preview <- dbGetQuery(con, 'SELECT year, month, day, dep_time, dep_delay, carrier, flight from flights limit 10')
+flights_preview
+```
+
+You can execute basic TD operation like delete table.
+
+```{r}
+table_delete("test", "flights")
+```
+
+## References
+- [RPresto](https://github.com/prestodb/RPresto)
+- [RDT](https://github.com/chezou/RTD)

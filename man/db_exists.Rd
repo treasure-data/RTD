@@ -2,7 +2,7 @@
 % Please edit documentation in R/database.R
 \name{db_exists}
 \alias{db_exists}
-\title{Check table existance}
+\title{Check table existence}
 \usage{
 db_exists(dbname)
 }
@@ -10,5 +10,5 @@ db_exists(dbname)
 \item{dbname}{Data base name}
 }
 \description{
-Check table existance
+Check table existence
 }

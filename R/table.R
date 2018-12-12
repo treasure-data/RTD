@@ -13,7 +13,7 @@ table_show <- function(dbname, table, quiet = FALSE) {
   return(td_execute("table:show", c(dbname, table), quiet = quiet))
 }
 
-#' Check table existance
+#' Check table existence
 #'
 #' @param dbname Data base name
 #' @param table Table name

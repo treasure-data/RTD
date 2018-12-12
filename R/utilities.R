@@ -48,13 +48,10 @@ td_execute <- function(command, opts, format = FALSE, intern = TRUE, quiet = FAL
 #'
 #' @param input An output of td command
 #'
-#' @importFrom dplyr %>%
 #' @importFrom readr read_tsv
 #'
 .as.df <- function(input) {
-  return(input %>%
-           paste(collapse = '\n') %>%
-           read_tsv)
+  return(read_tsv(paste(input, collapse = '\n')))
 }
 
 cacheEnv <- new.env(parent = emptyenv())
