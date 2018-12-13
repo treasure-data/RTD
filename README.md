@@ -1,5 +1,7 @@
 # RTD
 
+[![Travis build status](https://travis-ci.org/chezou/RTD.svg?branch=master)](https://travis-ci.org/chezou/RTD)
+
 RTD is an official R client for Arm Treasure Data. It aims to make it simple to handle or connect from R to TD.
 
 Since RTD covers only basic execution on TD, we recommend to use RPresto or RJDBC for querying.
