@@ -23,7 +23,7 @@ devtools::install_github("chezou/RTD")
 
 ## Example
 
-See also [RTD_example.Rmd](./blob/master/RTD_example.Rmd)
+See also [RTD_example.Rmd](./RTD_example.Rmd)
 
 ```R
 library(RTD)
