@@ -3,7 +3,7 @@ library(mockery)
 context('td')
 
 test_that("td_upload works with mock",{
-  test_time <- as.POSIXlt("2018-12-13 15:00:00 JST")
+  test_time <- as.POSIXlt("2018-12-13 15:00:00", tz="GMT")
   m <- mock(0)
   with_mock(
     db_exists = mock(FALSE),
@@ -18,5 +18,5 @@ test_that("td_upload works with mock",{
       td_upload("test", "iris", iris)
     }
   )
-  expect_args(m, TRUE, "td", "import:auto --format tsv --auto-create  test.iris --column-header --time-value 1544680800 /tmp/filed7ff398c8e.tsv ")
+  expect_args(m, TRUE, "td", "import:auto --format tsv --auto-create  test.iris --column-header --time-value 1544713200 /tmp/filed7ff398c8e.tsv ")
 })
