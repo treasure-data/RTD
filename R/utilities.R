@@ -40,7 +40,8 @@ td_execute <- function(command, opts, format = FALSE, intern = TRUE, quiet = FAL
       return(FALSE)
     })
   } else {
-    return(system2("td", cmd))
+    ret <- system2("td", cmd)
+    return(ret == 0)
   }
 }
 

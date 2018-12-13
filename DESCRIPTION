@@ -19,3 +19,7 @@ Collate:
     'td.R'
 Imports: 
     readr (>= 1.2.1)
+Suggests: 
+    testthat (>= 2.0.1),
+    mockery (>= 0.4.1.1),
+    dplyr (>= 0.7.8)
