@@ -1,3 +1,5 @@
+^cran-comments\.md$
+^CRAN-RELEASE$
 ^\.travis\.yml$
 ^RTD\.Rproj$
 ^\.Rproj\.user$
@@ -6,3 +8,4 @@
 \.Rmd$
 \.html$
 ^error-records$
+^revdep$

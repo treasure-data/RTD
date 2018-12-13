@@ -6,7 +6,9 @@ Authors@R:
            family = "Ariga",
            role = c("aut", "cre"),
            email = "chezou@gmail.com")
-Description: RTD execute TD toolbelt.
+Maintainer: Aki ARiga <chezou@gmail.com>
+Description: RTD execute TD toolbelt, see <https://toolbelt.treasuredata.com>. 
+SystemRequirements: TD toolbelt
 License: Apache License 2.0 | file LICENSE
 Encoding: UTF-8
 LazyData: true

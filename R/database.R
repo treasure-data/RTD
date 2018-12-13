@@ -3,6 +3,7 @@ NULL
 
 #' Show database list
 #' @export
+#'
 db_list <- function() {
   return(td_execute("db:list", format = TRUE))
 }
@@ -33,6 +34,7 @@ db_exists <- function(dbname) {
 #' @param dbname Target data base name
 #'
 #' @export
+#'
 db_create <- function(dbname) {
   return(td_execute("db:create", dbname, intern = FALSE))
 }
@@ -42,6 +44,7 @@ db_create <- function(dbname) {
 #' @param dbname Target data base name
 #'
 #' @export
+#'
 db_delete <- function(dbname) {
   return(td_execute("db:delete", c(dbname, "-f"), intern = FALSE))
 }
