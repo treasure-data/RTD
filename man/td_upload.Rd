@@ -18,3 +18,12 @@ td_upload(dbname, table, df, overwrite = FALSE)
 \description{
 Upload data.frame to TD
 }
+\examples{
+\dontrun{
+td_upload("mydb", "iris", iris)
+
+# With overwrite option
+td_upload("mydb", "iris", iris, overwrite = TRUE)
+}
+
+}

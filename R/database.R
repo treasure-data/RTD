@@ -2,6 +2,13 @@
 NULL
 
 #' Show database list
+#' @return Returns a \code{data.frame} of the database list
+#'
+#' @examples
+#' \dontrun{
+#' db_list()
+#' }
+#'
 #' @export
 #'
 db_list <- function() {
@@ -12,6 +19,12 @@ db_list <- function() {
 #'
 #' @param dbname Target data base name
 #' @param quiet Suppress td command warning
+#' @return Returns a \code{data.frame} of described information of a database or \code{FALSE} when the execution failed.
+#'
+#' @examples
+#' \dontrun{
+#' db_show("mydb")
+#' }
 #'
 #' @export
 db_show <- function(dbname, quiet = FALSE) {
@@ -21,6 +34,12 @@ db_show <- function(dbname, quiet = FALSE) {
 #' Check table existence
 #'
 #' @param dbname Data base name
+#' @return Return \code{TRUE} or \code{FALSE}, existence
+#'
+#' @examples
+#' \dontrun{
+#' db_exists("mydb")
+#' }
 #'
 #' @export
 #'
@@ -32,6 +51,12 @@ db_exists <- function(dbname) {
 #' Create a database
 #'
 #' @param dbname Target data base name
+#' @return Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+#'
+#' @examples
+#' \dontrun{
+#' db_create("newdb")
+#' }
 #'
 #' @export
 #'
@@ -42,6 +67,12 @@ db_create <- function(dbname) {
 #' Delete a database
 #'
 #' @param dbname Target data base name
+#' @return Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+#'
+#' @examples
+#' \dontrun{
+#' db_delete("mydb")
+#' }
 #'
 #' @export
 #'

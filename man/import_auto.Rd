@@ -27,3 +27,12 @@ import_auto(dest, file_name, delimiter, column_types, time_value, format,
 \description{
 Import file to TD. Equivalent with td import:auto
 }
+\examples{
+\dontrun{
+import_auto("mydb.iris", "iris.tsv", header = TRUE)
+
+# Import CSV format text file without column header
+import_auto("mydb.iris_text", "iris.txt", format = 'csv', header = FALSE)
+}
+
+}

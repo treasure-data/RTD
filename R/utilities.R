@@ -7,15 +7,24 @@
 #' @param quiet Suppress warning for td command.
 #' @param timeout Timeout seconds for executing td command.
 #'
+#' @examples
+#' \dontrun{
+#' # With character for \code{opts}
+#' td_execute("table:list", "mydb", format = TRUE)
+#'
+#' # With character vector for \code{opts}
+#' td_execute("table:create", c("mydb", "iris"))
+#' }
+#'
 td_execute <- function(command, opts, format = FALSE, intern = TRUE, quiet = FALSE, timeout = FALSE) {
   # Check if td command exists
   td_version()
 
-  fmt_opt <- ifelse(format, '-f tsv', '')
+  fmt_opt <- ifelse(format, ' -f tsv', '')
   if(missing(opts)) {
-    cmd <- paste(command, fmt_opt)
+    cmd <- paste0(command, fmt_opt)
   } else {
-    cmd <- paste(command, paste(opts, collapse = ' '), fmt_opt)
+    cmd <- paste0(command, ' ', paste(opts, collapse = ' '), fmt_opt)
   }
 
   if(intern) {

@@ -13,6 +13,15 @@ table_show(dbname, table, quiet = FALSE)
 
 \item{quiet}{Suppress warning for td command}
 }
+\value{
+A \code{list} of table info or \code{FALSE} if not exists.
+}
 \description{
 Describe information of a table
+}
+\examples{
+\dontrun{
+table_show("mydb", "iris")
+}
+
 }

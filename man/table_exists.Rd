@@ -11,6 +11,15 @@ table_exists(dbname, table)
 
 \item{table}{Table name}
 }
+\value{
+Returns \code{TRUE} or \code{FALSE}, existence.
+}
 \description{
 Check table existence
+}
+\examples{
+\dontrun{
+table_exists("mydb", "iris")
+}
+
 }

@@ -6,6 +6,15 @@
 \usage{
 db_list()
 }
+\value{
+Returns a \code{data.frame} of the database list
+}
 \description{
 Show database list
+}
+\examples{
+\dontrun{
+db_list()
+}
+
 }

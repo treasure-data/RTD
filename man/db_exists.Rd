@@ -9,6 +9,15 @@ db_exists(dbname)
 \arguments{
 \item{dbname}{Data base name}
 }
+\value{
+Return \code{TRUE} or \code{FALSE}, existence
+}
 \description{
 Check table existence
+}
+\examples{
+\dontrun{
+db_exists("mydb")
+}
+
 }

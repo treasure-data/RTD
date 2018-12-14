@@ -11,6 +11,15 @@ table_create(dbname, table)
 
 \item{table}{Table name}
 }
+\value{
+Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+}
 \description{
 Create a table
+}
+\examples{
+\dontrun{
+table_create("mydb", "new_table")
+}
+
 }

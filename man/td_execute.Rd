@@ -23,3 +23,13 @@ td_execute(command, opts, format = FALSE, intern = TRUE,
 \description{
 Execute td command
 }
+\examples{
+\dontrun{
+# With character for \\code{opts}
+td_execute("table:list", "mydb", format = TRUE)
+
+# With character vector for \\code{opts}
+td_execute("table:create", c("mydb", "iris"))
+}
+
+}

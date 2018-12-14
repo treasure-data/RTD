@@ -8,6 +8,14 @@ NULL
 #' @param df Input data.frame.
 #' @param overwrite Flag for overwriting the table if exists. It doesn't overwrite database.
 #'
+#' @examples
+#' \dontrun{
+#' td_upload("mydb", "iris", iris)
+#'
+#' # With overwrite option
+#' td_upload("mydb", "iris", iris, overwrite = TRUE)
+#' }
+#'
 #' @importFrom readr write_tsv
 #' @export
 td_upload <- function(dbname, table, df, overwrite = FALSE) {

@@ -7,8 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "chezou@gmail.com")
 Maintainer: Aki Ariga <chezou@gmail.com>
-Description: This package execute TD toolbelt, see <https://toolbelt.treasuredata.com>. 
-    You can execute database or table handling and upload data.frame to Arm Treasure Data.
+Description: 
+  This package execute TD Toolbelt, see <https://toolbelt.treasuredata.com>. 
+  You can execute database or table handling and upload data.frame to Arm Treasure Data.
 SystemRequirements: TD toolbelt
 License: Apache License 2.0 | file LICENSE
 Encoding: UTF-8

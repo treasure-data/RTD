@@ -19,7 +19,7 @@ test_that('import_auto works with mock', {
     }
   )
 
-  expect_args(m, TRUE, "td", "import:auto --format tsv --auto-create  test.iris --column-header --time-value 1544713200 iris.tsv ")
+  expect_args(m, TRUE, "td", "import:auto --format tsv --auto-create test.iris --column-header --time-value 1544713200 iris.tsv")
 })
 
 test_that('import_auto works with mock without time_value', {
@@ -36,6 +36,6 @@ test_that('import_auto works with mock without time_value', {
     }
   )
 
-  expect_args(m, TRUE, "td", "import:auto --format csv --auto-create  test.iris --column-header --time-value 1544713200 iris ")
+  expect_args(m, TRUE, "td", "import:auto --format csv --auto-create test.iris --column-header --time-value 1544713200 iris")
 })
 

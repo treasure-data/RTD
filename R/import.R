@@ -11,6 +11,15 @@ NULL
 #' @param delimiter CSV/TSV option. delimiter CHAR; default="," at csv, TAB at tsv
 #' @param header CSV/TSV option. first line includes column names
 #' @param quote CSV/TSV option. [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
+#'
+#' @examples
+#' \dontrun{
+#' import_auto("mydb.iris", "iris.tsv", header = TRUE)
+#'
+#' # Import CSV format text file without column header
+#' import_auto("mydb.iris_text", "iris.txt", format = 'csv', header = FALSE)
+#' }
+#'
 #' @export
 #'
 import_auto <- function(
@@ -34,7 +43,7 @@ import_auto <- function(
       'csv'
     )
   }
-  opts <- c("--format", format, "--auto-create ", dest)
+  opts <- c("--format", format, "--auto-create", dest)
   if(header) {
     opts <- c(opts, "--column-header")
   }

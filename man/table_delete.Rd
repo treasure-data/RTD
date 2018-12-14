@@ -11,6 +11,15 @@ table_delete(dbname, table)
 
 \item{table}{Table name}
 }
+\value{
+Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+}
 \description{
 Delete a table
+}
+\examples{
+\dontrun{
+table_delete("mydb", "iris")
+}
+
 }

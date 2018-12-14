@@ -9,6 +9,15 @@ db_delete(dbname)
 \arguments{
 \item{dbname}{Target data base name}
 }
+\value{
+Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+}
 \description{
 Delete a database
+}
+\examples{
+\dontrun{
+db_delete("mydb")
+}
+
 }

@@ -9,6 +9,15 @@ db_create(dbname)
 \arguments{
 \item{dbname}{Target data base name}
 }
+\value{
+Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+}
 \description{
 Create a database
+}
+\examples{
+\dontrun{
+db_create("newdb")
+}
+
 }

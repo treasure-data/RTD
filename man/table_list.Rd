@@ -7,10 +7,23 @@
 table_list(dbname = NULL, timeout = 300)
 }
 \arguments{
-\item{dbname}{Data base name. Optional.}
+\item{dbname}{Data base name. Optional, but highly recommended to prevent timeout.}
 
 \item{timeout}{Time out seconds for executing td command. It prevents long executing to list without dbname.}
 }
+\value{
+Returns a \code{data.frame} of a list of tables or \code{FALSE} if not exists.
+}
 \description{
 Show list of tables
+}
+\examples{
+\dontrun{
+# Without data base name. It might be timeout depends on the table number.
+table_list()
+
+# With data base name. Recommended.
+table_list("mydb")
+}
+
 }

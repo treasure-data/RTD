@@ -11,6 +11,15 @@ db_show(dbname, quiet = FALSE)
 
 \item{quiet}{Suppress td command warning}
 }
+\value{
+Returns a \code{data.frame} of described information of a database or \code{FALSE} when the execution failed.
+}
 \description{
 Describe information of a database
+}
+\examples{
+\dontrun{
+db_show("mydb")
+}
+
 }
