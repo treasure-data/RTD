@@ -32,7 +32,24 @@ td_upload <- function(dbname, table, df, overwrite = FALSE) {
   }
   table_create(dbname, table)
 
+  column_types <- .guess_column_types(df)
+
   tmpfname <- tempfile(fileext = ".tsv")
+
   write_tsv(df, tmpfname, quote_escape = FALSE)
-  import_auto(paste(dbname, table, sep = '.'), tmpfname, format = 'tsv')
+  import_auto(paste(dbname, table, sep = '.'), tmpfname, format = 'tsv', column_types = column_types)
+}
+
+.guess_column_types <- function(df) {
+  guessed_types <- sapply(df, function(x){
+    if(is.factor(x) || is.character(x)) {
+      "string"
+    } else if(all(x%%1 == 0)) {
+      "int"
+    } else {
+      "double"
+    }
+  })
+
+  return(paste(guessed_types, collapse = ','))
 }
