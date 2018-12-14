@@ -36,7 +36,7 @@ td_upload <- function(dbname, table, df, overwrite = FALSE) {
 
   tmpfname <- tempfile(fileext = ".tsv")
 
-  write_tsv(df, tmpfname, quote_escape = FALSE)
+  write_tsv(df, tmpfname, quote_escape = FALSE, na = '')
   import_auto(paste(dbname, table, sep = '.'), tmpfname, format = 'tsv', column_types = column_types)
 }
 
