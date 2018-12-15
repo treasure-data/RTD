@@ -1,0 +1,11 @@
+in:
+    type: file
+    path_prefix: {{ env.path_prefix }}
+out:
+    type: td
+    apikey: {{ env.TD_API_KEY }}
+    endpoint: {% if env.TD_API_SERVER %}{{ env.TD_API_SERVER }}{% else %} api.treasuredata.com{% endif %}
+    database: {{ env.dbname }}
+    table: {{ env.table }}
+    mode: replace
+    default_timestamp_format: '%Y-%m-%d %H:%M:%S'
