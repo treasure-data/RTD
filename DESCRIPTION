@@ -16,13 +16,17 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Collate: 
+    'TdClient.R'
     'utilities.R'
     'database.R'
     'import.R'
     'table.R'
     'td.R'
 Imports: 
-    readr (>= 1.2.1)
+    readr (>= 1.2.1),
+    httr,
+    jsonlite,
+    methods
 Suggests: 
     testthat (>= 2.0.1),
     mockery (>= 0.4.1.1),
