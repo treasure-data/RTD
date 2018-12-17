@@ -1,6 +1,6 @@
-library(mockery)
-
 context('import')
+
+library(mockery)
 
 test_time <- as.POSIXlt("2018-12-13 15:00:00", tz="GMT")
 current_time <- round(as.numeric(test_time))

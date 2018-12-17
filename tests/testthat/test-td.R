@@ -1,6 +1,6 @@
-library(mockery)
-
 context('td')
+
+library(mockery)
 
 test_that("td_upload works with mock",{
   test_time <- as.POSIXlt("2018-12-13 15:00:00", tz="GMT")
