@@ -34,7 +34,7 @@ test_that("td_upload_embulk works with mock",{
     table_create = mock(TRUE),
     table_delete = mock(TRUE),
     tempdir = mock("/tmp"),
-    `system.file` = mock("/home/R/package/RTD/extdata/tsv_upload.yml.liquid"),
+    #`system.file` = mock("/home/R/package/RTD/extdata/tsv_upload.yml.liquid"),
     `Sys.which` = mock("/home/RTD/bin/embulk"),
     `Sys.time` = mock(test_time),
     `system2` = m,
