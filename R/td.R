@@ -74,7 +74,7 @@ td_upload_embulk <- function(dbname, table, df, embulk_dir, overwrite = FALSE) {
   exists_db <- db_exists(dbname)
   exists_table <- table_exists(dbname, table)
   if(!overwrite && exists_table) {
-    stop(paste0('"', dbname, ".", table, '" is already exists.'))
+    stop(paste0('"', dbname, ".", table, '" already exists.'))
   }
   if(!exists_db) {
     db_create(dbname)
