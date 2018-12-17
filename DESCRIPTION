@@ -1,6 +1,6 @@
 Package: RTD
 Title: Execute TD Toolbelt in R
-Version: 0.0.1.900
+Version: 0.1.0.900
 Authors@R: 
     person(given = "Aki",
            family = "Ariga",
@@ -8,22 +8,25 @@ Authors@R:
            email = "chezou@gmail.com")
 Maintainer: Aki Ariga <chezou@gmail.com>
 Description: 
-  Execute TD Toolbelt, see <https://toolbelt.treasuredata.com>. 
-  You can execute database or table handling and upload data.frame to Arm Treasure Data.
-SystemRequirements: TD toolbelt, embulk
+  Upload R data.frame to Arm Treasure Data. 
+  You can execute database or table handling for resources on Arm Treasure Data.
+SystemRequirements: embulk
 License: Apache License 2.0 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Collate: 
-    'utilities.R'
+    'TdClient.R'
     'database.R'
-    'import.R'
     'table.R'
     'td.R'
 Imports: 
-    readr (>= 1.2.1)
+    readr (>= 1.2.1),
+    httr,
+    jsonlite,
+    methods
 Suggests: 
     testthat (>= 2.0.1),
     mockery (>= 0.4.1.1),
-    dplyr (>= 0.7.8)
+    dplyr (>= 0.7.8),
+    webmockr

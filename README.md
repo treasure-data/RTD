@@ -8,9 +8,9 @@ Since RTD covers only basic execution on TD, we recommend to use RPresto or RJDB
 
 ## Requirements
 
-Since current implementation is a simple wrapper of TD toolbelt. Ensure you've installed TD toolbelt and set PATH for it.
+To upload data.frame from R, ensure you've installed embulk and set PATH for it.
 
-- [TD toolbelt](https://toolbelt.treasuredata.com/)
+- [embulk](https://www.embulk.org/)
 
 ## Install
 
@@ -23,32 +23,28 @@ devtools::install_github("chezou/RTD")
 
 ## Example
 
-See also [RTD_example.Rmd](./RTD_example.Rmd) or [RPubs](https://rpubs.com/chezou/TD-from-RPresto-RTD).
-
 ```R
 library(RTD)
 
-# Show list of databases
-db_list()
+client <- Td(apikey=Sys.getenv("TD_API_KEY"), endpoint=Sys.getenv("TD_API_SERVER"))
 
-# Show specific database information
-db_show("sample_datasets")
+# Show list of databases
+list_databases(client)
 
 # Create database
-db_create("test")
+create_database(client, "test")
 
 # Craete table
-table_create("test", "example")
-
-# Import TSV file
-import_auto("test.example", "example.tsv", header = TRUE)
+create_table(client, "test", "example")
 
 # Delete table
-table_delete("test", "example")
+delete_table(client, "test", "example")
 
 # Upload data.frame. Target database and table will be created automatically.
-td_upload("test", "mtcars", mtcars)
+td_upload(client, "test", "mtcars", mtcars)
 
 # Drop database
-db_delete("test")
+delete_database(client, "test")
 ```
+
+See also [RTD_example.Rmd](./RTD_example.Rmd) or [RPubs](https://rpubs.com/chezou/TD-from-RPresto-RTD).

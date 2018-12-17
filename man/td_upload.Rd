@@ -4,14 +4,18 @@
 \alias{td_upload}
 \title{Upload data.frame to TD}
 \usage{
-td_upload(dbname, table, df, overwrite = FALSE)
+td_upload(conn, dbname, table, df, embulk_dir, overwrite = FALSE)
 }
 \arguments{
+\item{conn}{\code{Td} connection}
+
 \item{dbname}{Target destination database name.}
 
 \item{table}{Target table name.}
 
 \item{df}{Input data.frame.}
+
+\item{embulk_dir}{Path to embulk. [optional]}
 
 \item{overwrite}{Flag for overwriting the table if exists. It doesn't overwrite database.}
 }
@@ -20,10 +24,13 @@ Upload data.frame to TD
 }
 \examples{
 \dontrun{
-td_upload("mydb", "iris", iris)
+td_upload_embulk("mydb", "iris", iris)
 
 # With overwrite option
-td_upload("mydb", "iris", iris, overwrite = TRUE)
+td_upload_embulk("mydb", "iris", iris, overwrite = TRUE)
+
+# With overwrite option
+td_upload_embulk("mydb", "iris", iris, "/path/to/embulk", overwrite = TRUE)
 }
 
 }
