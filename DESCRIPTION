@@ -30,4 +30,5 @@ Imports:
 Suggests: 
     testthat (>= 2.0.1),
     mockery (>= 0.4.1.1),
-    dplyr (>= 0.7.8)
+    dplyr (>= 0.7.8),
+    webmockr

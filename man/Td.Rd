@@ -2,7 +2,7 @@
 % Please edit documentation in R/TdClient.R
 \name{Td}
 \alias{Td}
-\title{Td client}
+\title{Connect to TD}
 \usage{
 Td(endpoint, apikey, user_agent, headers)
 }
@@ -16,5 +16,5 @@ Td(endpoint, apikey, user_agent, headers)
 \item{headers}{Default headres. optional}
 }
 \description{
-Td client
+Connect to TD
 }

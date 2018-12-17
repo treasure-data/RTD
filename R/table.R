@@ -1,4 +1,4 @@
-#' @include utilities.R
+#' @include utilities.R TdClient.R
 NULL
 
 #' Describe information of a table
@@ -37,6 +37,11 @@ table_exists <- function(dbname, table) {
   return(!isFALSE(ret))
 }
 
+exist_table <- function(conn, dbname, table) {
+  tables <- list_tables(conn, dbname)
+  return(table %in% tables$name)
+}
+
 #' Show list of tables
 #'
 #' @param dbname Data base name. Optional, but highly recommended to prevent timeout.
@@ -58,6 +63,11 @@ table_list <- function(dbname = NULL, timeout = 300) {
   return(td_execute("table:list", dbname, format = TRUE, timeout = timeout))
 }
 
+list_tables <- function(conn, dbname) {
+  res <- .get(conn, paste0("/v3/table/list/", dbname))
+  return(as.data.frame(do.call("rbind", res$tables)))
+}
+
 #' Create a table
 #'
 #' @param dbname Data base name
@@ -75,6 +85,11 @@ table_create <- function(dbname, table) {
   return(td_execute("table:create", c(dbname, table), intern = FALSE))
 }
 
+create_table <- function(conn, dbname, table) {
+  .post(conn, paste0("/v3/table/create/", dbname, "/", table, "/log"), character(0))
+  return(TRUE)
+}
+
 #' Delete a table
 #'
 #' @param dbname Data base name
@@ -90,4 +105,9 @@ table_create <- function(dbname, table) {
 #'
 table_delete <- function(dbname, table) {
   return(td_execute("table:delete", c(dbname, table, "-f"), intern = FALSE))
+}
+
+delete_table <- function(conn, dbname, table) {
+  res <- .post(conn, paste0("/v3/table/delete/", dbname, "/", table), character(0))
+  return(res$type)
 }

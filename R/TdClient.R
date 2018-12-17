@@ -3,7 +3,7 @@ TdClient <- setRefClass("TdClient", fields = list(endpoint="character", apikey="
 
 DEFAULT_ENDPOINT <- "api.treasuredata.com"
 
-#' Td client
+#' Connect to TD
 #'
 #' @param endpoint Endpoint to TD API
 #' @param apikey API key for TD
@@ -70,14 +70,14 @@ wait <- function () {
   Sys.sleep(stats::runif(n = 1, min = 50, max = 100) / 1000)
 }
 
-check.status.code <- function(response) {
+check_status_code <- function(response) {
   status <- httr::status_code(response)
   if (status >= 400 && status < 500) {
-    text.content <- httr::content(response, as = "text", encoding='UTF-8')
-    if (is.null(text.content) || !nzchar(text.content)) {
+    content <- httr::content(response, as = "text", encoding='UTF-8')
+    if (is.null(content) || !nzchar(content)) {
       httr::stop_for_status(status)
     }
-    stop('Received error response (HTTP ', status, '): ', text.content)
+    stop('Received error response (HTTP ', status, '): ', content)
   }
 }
 
@@ -93,7 +93,7 @@ check.status.code <- function(response) {
       retries <- retries - 1
     }
   }
-  check.status.code(response)
+  check_status_code(response)
   content <- httr::content(response, as = "text", encoding ="UTF-8")
   jsonlite::fromJSON(content, simplifyVector = FALSE)
 }
@@ -110,24 +110,8 @@ check.status.code <- function(response) {
       retries <- retries - 1
     }
   }
-  check.status.code(response)
+  check_status_code(response)
   content <- httr::content(response, as = "text", encoding ="UTF-8")
   jsonlite::fromJSON(content, simplifyVector = FALSE)
 }
 
-.post <- function(conn, path, params, headers=NULL, ...) {
-  req <- .build_request(conn, path=path, headers=headers, ...)
-  status <- 503L
-  retries <- 3
-  while (status == 503L || (retries > 0 && status >= 400L)) {
-    wait()
-    response <- httr::POST(req$url, body=enc2utf8(params), req$headers)
-    status <- as.integer(httr::status_code(response))
-    if (status >= 400L && status != 503L) {
-      retries <- retries - 1
-    }
-  }
-  check.status.code(response)
-  content <- httr::content(response, as = "text", encoding ="UTF-8")
-  jsonlite::fromJSON(content, simplifyVector = FALSE)
-}

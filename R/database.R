@@ -15,6 +15,11 @@ db_list <- function() {
   return(td_execute("db:list", format = TRUE))
 }
 
+list_databases <- function(conn) {
+  res <- .get(conn, "/v3/database/list")
+  return(as.data.frame(do.call("rbind", res$databases)))
+}
+
 #' Describe information of a database
 #'
 #' @param dbname Target data base name
@@ -48,6 +53,11 @@ db_exists <- function(dbname) {
   return(!isFALSE(ret))
 }
 
+exist_database <- function(conn, dbname) {
+  databases <- list_databases(conn)
+  return(dbname %in% databases$name)
+}
+
 #' Create a database
 #'
 #' @param dbname Target data base name
@@ -64,6 +74,14 @@ db_create <- function(dbname) {
   return(td_execute("db:create", dbname, intern = FALSE))
 }
 
+create_database <- function(conn, dbname, params, ...) {
+  if(missing(params)) {
+    params = character(0)
+  }
+  .post(conn, paste0("/v3/database/create/", dbname), params)
+  return(TRUE)
+}
+
 #' Delete a database
 #'
 #' @param dbname Target data base name
@@ -78,4 +96,9 @@ db_create <- function(dbname) {
 #'
 db_delete <- function(dbname) {
   return(td_execute("db:delete", c(dbname, "-f"), intern = FALSE))
+}
+
+delete_database <- function(conn, dbname) {
+  .post(conn, paste0("/v3/database/delete/", dbname), character(0))
+  return(TRUE)
 }
