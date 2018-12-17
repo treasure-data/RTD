@@ -42,6 +42,7 @@ td_upload <- function(dbname, table, df, overwrite = FALSE) {
 
 #' Upload data.frame to TD
 #'
+#' @param conn \code{Td} connection
 #' @param dbname Target destination database name.
 #' @param table Target table name.
 #' @param df Input data.frame.
@@ -61,7 +62,7 @@ td_upload <- function(dbname, table, df, overwrite = FALSE) {
 #'
 #' @importFrom readr write_tsv
 #' @export
-td_upload_embulk <- function(dbname, table, df, embulk_dir, overwrite = FALSE) {
+td_upload_embulk <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE) {
   embulk_exec <- ifelse(missing(embulk_dir), "embulk", file.path(embulk_dir, "embulk"))
   if(.Platform$OS.type == "windows") {
     embulk_exec <- paste0(embulk_exec, ".bat")
@@ -71,18 +72,18 @@ td_upload_embulk <- function(dbname, table, df, embulk_dir, overwrite = FALSE) {
     stop("embulk isn't found. Ensure PATH is set for embulk or use embulk_dir option.")
   }
 
-  exists_db <- db_exists(dbname)
-  exists_table <- table_exists(dbname, table)
+  exists_db <- exist_database(conn, dbname)
+  exists_table <- exist_table(conn, dbname, table)
   if(!overwrite && exists_table) {
     stop(paste0('"', dbname, ".", table, '" already exists.'))
   }
   if(!exists_db) {
-    db_create(dbname)
+    create_database(conn, dbname)
   }
   if(overwrite && exists_table) {
-    table_delete(dbname, table)
+    delete_table(conn, dbname, table)
   }
-  table_create(dbname, table)
+  create_table(conn, dbname, table)
 
   template_path <- system.file("extdata", "tsv_upload.yml.liquid", package="RTD")
   temp_dir <- tempdir()
