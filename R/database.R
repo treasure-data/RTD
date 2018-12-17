@@ -53,6 +53,19 @@ db_exists <- function(dbname) {
   return(!isFALSE(ret))
 }
 
+#' Check table existence
+#'
+#' @param conn \code{Td} client
+#' @param dbname Data base name
+#' @return Return \code{TRUE} or \code{FALSE}, existence
+#'
+#' @examples
+#' \dontrun{
+#' conn <- Td(apikey="xxxx")
+#' exist_database(conn, "mydb")
+#' }
+#'
+#' @export
 exist_database <- function(conn, dbname) {
   databases <- list_databases(conn)
   return(dbname %in% databases$name)
@@ -74,7 +87,22 @@ db_create <- function(dbname) {
   return(td_execute("db:create", dbname, intern = FALSE))
 }
 
-create_database <- function(conn, dbname, params, ...) {
+#' Create a database
+#'
+#' @param conn \code{Td} client
+#' @param dbname Target data base name
+#' @param params Optional parameters
+#' @return Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+#'
+#' @examples
+#' \dontrun{
+#' con <- Td(apikey="xxxxx")
+#' create_database(con, "newdb")
+#' }
+#'
+#' @export
+#'
+create_database <- function(conn, dbname, params) {
   if(missing(params)) {
     params = character(0)
   }
@@ -98,6 +126,20 @@ db_delete <- function(dbname) {
   return(td_execute("db:delete", c(dbname, "-f"), intern = FALSE))
 }
 
+#' Delete a database
+#'
+#' @param conn \code{Td} client
+#' @param dbname Target data base name
+#' @return Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+#'
+#' @examples
+#' \dontrun{
+#' conn <- Td(apikey="xxxx")
+#' delete_database(conn, "mydb")
+#' }
+#'
+#' @export
+#'
 delete_database <- function(conn, dbname) {
   .post(conn, paste0("/v3/database/delete/", dbname), character(0))
   return(TRUE)

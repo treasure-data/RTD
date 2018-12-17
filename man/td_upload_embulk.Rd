@@ -4,9 +4,11 @@
 \alias{td_upload_embulk}
 \title{Upload data.frame to TD}
 \usage{
-td_upload_embulk(dbname, table, df, embulk_dir, overwrite = FALSE)
+td_upload_embulk(conn, dbname, table, df, embulk_dir, overwrite = FALSE)
 }
 \arguments{
+\item{conn}{\code{Td} connection}
+
 \item{dbname}{Target destination database name.}
 
 \item{table}{Target table name.}

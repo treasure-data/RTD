@@ -37,6 +37,21 @@ table_exists <- function(dbname, table) {
   return(!isFALSE(ret))
 }
 
+#' Check table existence
+#'
+#' @param conn \code{Td} connection
+#' @param dbname Data base name
+#' @param table Table name
+#' @return Returns \code{TRUE} or \code{FALSE}, existence.
+#'
+#' @examples
+#' \dontrun{
+#' conn <- Td(apikey="xxxxx")
+#' exist_table(conn, "mydb", "iris")
+#' }
+#'
+#' @export
+#'
 exist_table <- function(conn, dbname, table) {
   tables <- list_tables(conn, dbname)
   return(table %in% tables$name)
@@ -85,6 +100,21 @@ table_create <- function(dbname, table) {
   return(td_execute("table:create", c(dbname, table), intern = FALSE))
 }
 
+#' Create a table
+#'
+#' @param conn \code{Td} connection
+#' @param dbname Data base name
+#' @param table Table name
+#' @return Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+#'
+#' @examples
+#' \dontrun{
+#' conn <- Td(apikey="xxxx")
+#' create_table(conn, "mydb", "new_table")
+#' }
+#'
+#' @export
+#'
 create_table <- function(conn, dbname, table) {
   .post(conn, paste0("/v3/table/create/", dbname, "/", table, "/log"), character(0))
   return(TRUE)
@@ -107,6 +137,21 @@ table_delete <- function(dbname, table) {
   return(td_execute("table:delete", c(dbname, table, "-f"), intern = FALSE))
 }
 
+#' Delete a table
+#'
+#' @param conn \code{Td} connection
+#' @param dbname Data base name
+#' @param table Table name
+#' @return Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+#'
+#' @examples
+#' \dontrun{
+#' conn <- Td(apikey="xxxxx")
+#' delete_table(conn, "mydb", "iris")
+#' }
+#'
+#' @export
+#'
 delete_table <- function(conn, dbname, table) {
   res <- .post(conn, paste0("/v3/table/delete/", dbname, "/", table), character(0))
   return(res$type)
