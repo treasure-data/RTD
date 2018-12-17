@@ -1,6 +1,6 @@
 Package: RTD
 Title: Execute TD Toolbelt in R
-Version: 0.0.1.900
+Version: 0.1.0.900
 Authors@R: 
     person(given = "Aki",
            family = "Ariga",
