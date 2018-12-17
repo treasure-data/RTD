@@ -8,9 +8,9 @@ Since RTD covers only basic execution on TD, we recommend to use RPresto or RJDB
 
 ## Requirements
 
-Since current implementation is a simple wrapper of TD toolbelt. Ensure you've installed TD toolbelt and set PATH for it.
+To upload data.frame from R, ensure you've installed embulk and set PATH for it.
 
-- [TD toolbelt](https://toolbelt.treasuredata.com/)
+- [embulk](https://www.embulk.org/)
 
 ## Install
 
@@ -22,8 +22,6 @@ devtools::install_github("chezou/RTD")
 ```
 
 ## Example
-
-See also [RTD_example.Rmd](./RTD_example.Rmd) or [RPubs](https://rpubs.com/chezou/TD-from-RPresto-RTD).
 
 ```R
 library(RTD)
@@ -48,3 +46,5 @@ td_upload(client, "test", "mtcars", mtcars)
 # Drop database
 delete_database(client, "test")
 ```
+
+See also [RTD_example.Rmd](./RTD_example.Rmd) or [RPubs](https://rpubs.com/chezou/TD-from-RPresto-RTD).
