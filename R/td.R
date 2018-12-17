@@ -1,44 +1,5 @@
-#' @include import.R table.R
+#' @include table.R database.R
 NULL
-
-#' Upload data.frame to TD
-#'
-#' @param dbname Target destination database name.
-#' @param table Target table name.
-#' @param df Input data.frame.
-#' @param overwrite Flag for overwriting the table if exists. It doesn't overwrite database.
-#'
-#' @examples
-#' \dontrun{
-#' td_upload("mydb", "iris", iris)
-#'
-#' # With overwrite option
-#' td_upload("mydb", "iris", iris, overwrite = TRUE)
-#' }
-#'
-#' @importFrom readr write_tsv
-#' @export
-td_upload <- function(dbname, table, df, overwrite = FALSE) {
-  exists_db <- db_exists(dbname)
-  exists_table <- table_exists(dbname, table)
-  if(!overwrite && exists_table) {
-    stop(paste0('"', dbname, ".", table, '" is already exists.'))
-  }
-  if(!exists_db) {
-    db_create(dbname)
-  }
-  if(overwrite && exists_table) {
-    table_delete(dbname, table)
-  }
-  table_create(dbname, table)
-
-  column_types <- .guess_column_types(df)
-
-  tmpfname <- tempfile(fileext = ".tsv")
-
-  write_tsv(df, tmpfname, quote_escape = FALSE, na = '')
-  import_auto(paste(dbname, table, sep = '.'), tmpfname, format = 'tsv', column_types = column_types)
-}
 
 #' Upload data.frame to TD
 #'
@@ -62,7 +23,7 @@ td_upload <- function(dbname, table, df, overwrite = FALSE) {
 #'
 #' @importFrom readr write_tsv
 #' @export
-td_upload_embulk <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE) {
+td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE) {
   embulk_exec <- ifelse(missing(embulk_dir), "embulk", file.path(embulk_dir, "embulk"))
   if(.Platform$OS.type == "windows") {
     embulk_exec <- paste0(embulk_exec, ".bat")

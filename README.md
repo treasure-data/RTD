@@ -28,27 +28,23 @@ See also [RTD_example.Rmd](./RTD_example.Rmd) or [RPubs](https://rpubs.com/chezo
 ```R
 library(RTD)
 
-# Show list of databases
-db_list()
+client <- Td(apikey=Sys.getenv("TD_API_KEY"), endpoint=Sys.getenv("TD_API_SERVER"))
 
-# Show specific database information
-db_show("sample_datasets")
+# Show list of databases
+list_databases(client)
 
 # Create database
-db_create("test")
+create_database(client, "test")
 
 # Craete table
-table_create("test", "example")
-
-# Import TSV file
-import_auto("test.example", "example.tsv", header = TRUE)
+create_table(client, "test", "example")
 
 # Delete table
-table_delete("test", "example")
+delete_table(client, "test", "example")
 
 # Upload data.frame. Target database and table will be created automatically.
-td_upload("test", "mtcars", mtcars)
+td_upload(client, "test", "mtcars", mtcars)
 
 # Drop database
-db_delete("test")
+delete_database(client, "test")
 ```
