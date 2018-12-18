@@ -51,7 +51,7 @@ Td <- function(endpoint, apikey, user_agent, headers, http_proxy=NULL) {
   }
   if(is.null(http_proxy)){
     env_proxy <- Sys.getenv("HTTP_PROXY")
-    if(!nzchar(env_proxy)) {
+    if(nzchar(env_proxy)) {
       http_proxy <- env_proxy
     }
   }
