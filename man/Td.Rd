@@ -4,7 +4,7 @@
 \alias{Td}
 \title{Connect to TD}
 \usage{
-Td(endpoint, apikey, user_agent, headers)
+Td(endpoint, apikey, user_agent, headers, http_proxy = NULL)
 }
 \arguments{
 \item{endpoint}{Endpoint to TD API}
@@ -14,6 +14,8 @@ Td(endpoint, apikey, user_agent, headers)
 \item{user_agent}{User-Agent. optional}
 
 \item{headers}{Default headres. optional}
+
+\item{http_proxy}{HTTP proxy setting. optional}
 }
 \description{
 Connect to TD

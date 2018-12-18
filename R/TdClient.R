@@ -1,5 +1,10 @@
 
-TdClient <- setRefClass("TdClient", fields = list(endpoint="character", apikey="character", user_agent="character", headers="character"))
+TdClient <- setRefClass(
+  "TdClient",
+  fields = list(
+    endpoint="character", apikey="character",
+    user_agent="character", headers="character",
+    http_proxy="character"))
 
 DEFAULT_ENDPOINT <- "api.treasuredata.com"
 
@@ -9,12 +14,13 @@ DEFAULT_ENDPOINT <- "api.treasuredata.com"
 #' @param apikey API key for TD
 #' @param user_agent User-Agent. optional
 #' @param headers Default headres. optional
+#' @param http_proxy HTTP proxy setting. optional
 #'
 #' @importFrom methods new
 #' @importFrom utils packageVersion
 #'
 #' @export
-Td <- function(endpoint, apikey, user_agent, headers) {
+Td <- function(endpoint, apikey, user_agent, headers, http_proxy=NULL) {
   if(missing(apikey)) {
     apikey = Sys.getenv("TD_API_KEY")
 
@@ -35,12 +41,40 @@ Td <- function(endpoint, apikey, user_agent, headers) {
   if(missing(headers)) {
     headers <- character(0)
   }
+  if(is.null(http_proxy)){
+    env_proxy <- Sys.getenv("HTTP_PROXY")
+    if(!nzchar(env_proxy)) {
+      http_proxy <- env_proxy
+    }
+  }
+  proxy_settings <- character(0)
+  if(!is.null(http_proxy)) {
+    parsed_url <- urltools::url_parse(http_proxy)
+
+    credentials <- urltools::get_credentials(http_proxy)
+    username <- if(is.na(credentials$username)) NULL else credentials$username
+    password <- if(is.na(credentials$authentication)) NULL else credentials$authentication
+
+    # Setting for embulk
+    proxy_settings <- c(
+      host = parsed_url$domain, port = parsed_url$port,
+      use_ssl = tolower(parsed_url$scheme == 'https'), user = username, password = password)
+
+    # Set config for httr
+    httr::set_config(httr::use_proxy(
+      paste(parsed_url$scheme, parsed_url$domain, sep = "://"),
+      port = as.integer(parsed_url$port),
+      username = username,
+      password = password
+      ))
+  }
 
   con <- TdClient$new(
       endpoint=endpoint,
       apikey=apikey,
       user_agent=user_agent,
-      headers=headers
+      headers=headers,
+      http_proxy=proxy_settings
     )
   return(con)
 }

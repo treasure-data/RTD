@@ -50,12 +50,26 @@ td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE) {
   temp_dir <- tempdir()
   temp_tsv <- tempfile(fileext = ".tsv", pattern = "embulk_", tmpdir = temp_dir)
 
+  proxy_settings <- conn$http_proxy
+  if(identical(proxy_settings, character(0))) {
+    http_proxy <- ""
+  } else {
+    http_proxy <- paste0("http_proxy: {host: ", proxy_settings['host'], ", port: ", proxy_settings['port'], ", use_ssl: ", proxy_settings['use_ssl'])
+    if(!is.na(proxy_settings['user'])) {
+      http_proxy <- paste0(http_proxy, ',user: "', proxy_settings['user'], '"')
+    }
+    if(!is.na(proxy_settings['password'])) {
+      http_proxy <- paste0(http_proxy, ',password: "', proxy_settings['password'], '"')
+    }
+    http_proxy <- paste0(http_proxy, "}")
+  }
+
   # Replace NA as an empty string
   readr::write_tsv(df, temp_tsv, na= "")
   load_yml <- file.path(temp_dir, "load.yml")
 
   # Set environment variable for embulk
-  Sys.setenv(dbname=dbname, table=table, path_prefix=temp_tsv)
+  Sys.setenv(dbname=dbname, table=table, path_prefix=temp_tsv, http_proxy=http_proxy)
 
   system2(embulk_exec, paste("guess", template_path, "-o", load_yml))
   system2(embulk_exec, paste("run", load_yml))
