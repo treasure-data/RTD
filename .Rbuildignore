@@ -10,3 +10,4 @@
 ^error-records$
 ^revdep$
 ^RTD.Rcheck$
+^.java-version$

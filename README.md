@@ -11,6 +11,7 @@ Since RTD covers only basic execution on TD, we recommend to use RPresto or RJDB
 To upload data.frame from R, ensure you've installed embulk and set PATH for it.
 
 - [embulk](https://www.embulk.org/)
+- [embulk-output-td](https://github.com/treasure-data/embulk-output-td)
 
 ## Install
 
@@ -22,6 +23,8 @@ devtools::install_github("chezou/RTD")
 ```
 
 ## Example
+
+See also [RTD_example.Rmd](./RTD_example.Rmd) or [RPubs](https://rpubs.com/chezou/TD-from-RPresto-RTD).
 
 ```R
 library(RTD)
@@ -46,5 +49,3 @@ td_upload(client, "test", "mtcars", mtcars)
 # Drop database
 delete_database(client, "test")
 ```
-
-See also [RTD_example.Rmd](./RTD_example.Rmd) or [RPubs](https://rpubs.com/chezou/TD-from-RPresto-RTD).
