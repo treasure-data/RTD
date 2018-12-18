@@ -1,5 +1,5 @@
 Package: RTD
-Title: Simple TD API client for R
+Title: Simple TD API Client for R
 Version: 0.1.0
 Authors@R: 
     person(given = "Aki",
