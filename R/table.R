@@ -47,7 +47,7 @@ list_tables <- function(conn, dbname) {
 #' @param conn \code{Td} connection
 #' @param dbname Data base name
 #' @param table Table name
-#' @return Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+#' @return Returns \code{TRUE} or \code{FALSE}, whether the execution succeeded or not.
 #'
 #' @examples
 #' \dontrun{
@@ -67,7 +67,7 @@ create_table <- function(conn, dbname, table) {
 #' @param conn \code{Td} connection
 #' @param dbname Data base name
 #' @param table Table name
-#' @return Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+#' @return Returns \code{TRUE} or \code{FALSE}, whether the execution succeeded or not.
 #'
 #' @examples
 #' \dontrun{

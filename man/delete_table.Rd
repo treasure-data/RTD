@@ -14,7 +14,7 @@ delete_table(conn, dbname, table)
 \item{table}{Table name}
 }
 \value{
-Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+Returns \code{TRUE} or \code{FALSE}, whether the execution succeeded or not.
 }
 \description{
 Delete a table

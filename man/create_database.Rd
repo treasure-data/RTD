@@ -14,7 +14,7 @@ create_database(conn, dbname, params)
 \item{params}{Optional parameters}
 }
 \value{
-Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+Returns \code{TRUE} or \code{FALSE}, whether the execution succeeded or not.
 }
 \description{
 Create a database

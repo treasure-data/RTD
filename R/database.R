@@ -40,7 +40,7 @@ exist_database <- function(conn, dbname) {
 #' @param conn \code{Td} client
 #' @param dbname Target data base name
 #' @param params Optional parameters
-#' @return Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+#' @return Returns \code{TRUE} or \code{FALSE}, whether the execution succeeded or not.
 #'
 #' @examples
 #' \dontrun{
@@ -62,7 +62,7 @@ create_database <- function(conn, dbname, params) {
 #'
 #' @param conn \code{Td} client
 #' @param dbname Target data base name
-#' @return Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+#' @return Returns \code{TRUE} or \code{FALSE}, whether the execution succeeded or not.
 #'
 #' @examples
 #' \dontrun{

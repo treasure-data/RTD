@@ -12,7 +12,7 @@ delete_database(conn, dbname)
 \item{dbname}{Target data base name}
 }
 \value{
-Returns \code{TRUE} or \code{FALSE}, whether the executiuon successed or not.
+Returns \code{TRUE} or \code{FALSE}, whether the execution succeeded or not.
 }
 \description{
 Delete a database
