@@ -22,7 +22,8 @@ Collate:
     'td.R'
 Imports: 
     readr (>= 1.2.1),
-    httr,
+    httr(>= 1.4.0),
+    openssl,
     jsonlite,
     methods,
     urltools
