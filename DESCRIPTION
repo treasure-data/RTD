@@ -1,6 +1,6 @@
 Package: RTD
 Title: Simple TD API Client for R
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person(given = "Aki",
            family = "Ariga",
