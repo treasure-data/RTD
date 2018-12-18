@@ -9,7 +9,7 @@ This is an example notebook to connect Arm Treasure Data (TD) from R. If you wan
 
 While RPresto enables you to query TD easily, it can't handle some TD execution. In this notebook, I will explain how to query with RPresto and how to execute basic TD operation.
 
-Before installing R packages, you have to install [TD toolbelt](https://toolbelt.treasuredata.com/). Ensure PATH for `td` command to be set appropriately. You also have to set your "TD_API_KEY" is set as an environement variable.
+Before installing R packages, you have to install [embulk](https://www.embulk.org/) and [embulk-output-td](https://github.com/treasure-data/embulk-output-td) plugin. Ensure PATH for `embulk` command to be set appropriately. You also have to set your "TD_API_KEY" is set as an environement variable.
 
 Let's install RPresto and RTD packages.
 
@@ -27,7 +27,8 @@ install.packages("nycflights13")
 ```{r}
 library(RTD)
 
-td_upload("test", "flights", nycflights13::flights )
+client <- Td(apikey = Sys.getenv("TD_API_KEY"), endpoint="api.treasuredata.com")
+td_upload(client, "test", "flights", nycflights13::flights )
 ```
 
 
@@ -101,9 +102,9 @@ flights_preview
 You can execute basic TD operation like delete table.
 
 ```{r}
-table_delete("test", "flights")
+delete_table(client, "test", "flights")
 ```
 
 ## References
 - [RPresto](https://github.com/prestodb/RPresto)
-- [RDT](https://github.com/chezou/RTD)
+- [RTD](https://github.com/chezou/RTD)
