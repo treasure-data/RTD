@@ -12,12 +12,20 @@ DEFAULT_ENDPOINT <- "api.treasuredata.com"
 #'
 #' @param endpoint Endpoint to TD API
 #' @param apikey API key for TD
-#' @param user_agent User-Agent. optional
-#' @param headers Default headres. optional
-#' @param http_proxy HTTP proxy setting. optional
+#' @param user_agent User-Agent as \code{character}. optional
+#' @param headers Default headres in a named \code{character} vector. optional
+#' @param http_proxy HTTP proxy setting. optional.
 #'
 #' @importFrom methods new
 #' @importFrom utils packageVersion
+#'
+#' @examples
+#' \dontrun{
+#' client <- Td(
+#'   endpoint="api.treasuredata.com",
+#'   apikey="xxxxxx",
+#'   http_proxy="http://user:pass@proxy.domain.com:8080/")
+#' }
 #'
 #' @export
 Td <- function(endpoint, apikey, user_agent, headers, http_proxy=NULL) {
