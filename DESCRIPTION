@@ -1,5 +1,5 @@
 Package: RTD
-Title: Simple TD API Client for R
+Title: Simple TD API Client
 Version: 0.1.1
 Authors@R: 
     person(given = "Aki",
@@ -8,7 +8,7 @@ Authors@R:
            email = "chezou@gmail.com")
 Maintainer: Aki Ariga <chezou@gmail.com>
 Description: 
-  Upload R data.frame to Arm Treasure Data. 
+  Upload R data.frame to Arm Treasure Data, see <https://www.treasuredata.com/>. 
   You can execute database or table handling for resources on Arm Treasure Data.
 SystemRequirements: embulk, embulk-output-td
 License: Apache License 2.0 | file LICENSE
