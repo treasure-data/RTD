@@ -18,6 +18,9 @@ NULL
 #' # With overwrite option
 #' td_upload_embulk("mydb", "iris", iris, overwrite = TRUE)
 #'
+#' # With append option
+#' td_upload_embulk("mydb", "iris", iris, append = TRUE)
+#'
 #' # With overwrite option
 #' td_upload_embulk("mydb", "iris", iris, "/path/to/embulk", overwrite = TRUE)
 #' }
