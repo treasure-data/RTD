@@ -79,5 +79,5 @@ create_table <- function(conn, dbname, table) {
 #'
 delete_table <- function(conn, dbname, table) {
   res <- .post(conn, paste0("/v3/table/delete/", dbname, "/", table), character(0))
-  return(res$type)
+  return(TRUE)
 }

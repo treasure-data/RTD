@@ -36,7 +36,7 @@ td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE, ap
 
   exists_db <- exist_database(conn, dbname)
   exists_table <- exist_table(conn, dbname, table)
-  if (!overwrite && exists_table) {
+  if (!overwrite && !append && exists_table) {
     stop(paste0('"', dbname, ".", table, '" already exists.'))
   }
   if (!exists_db) {
@@ -72,7 +72,7 @@ td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE, ap
   load_yml <- file.path(temp_dir, "load.yml")
 
   # Set environment variable for embulk
-  Sys.setenv(dbname = dbname, table = table, path_prefix = temp_tsv, http_proxy = http_proxy, apikey = conn$apikey, endpoint = conn$endpoint)
+  Sys.setenv(dbname = dbname, table = table, path_prefix = temp_tsv, http_proxy = http_proxy, apikey = conn$apikey, endpoint = conn$endpoint, mode = mode)
 
   system2(embulk_exec, paste("guess", template_path, "-o", load_yml))
   system2(embulk_exec, paste("run", load_yml))
