@@ -69,7 +69,7 @@ td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE) {
   load_yml <- file.path(temp_dir, "load.yml")
 
   # Set environment variable for embulk
-  Sys.setenv(dbname=dbname, table=table, path_prefix=temp_tsv, http_proxy=http_proxy)
+  Sys.setenv(dbname=dbname, table=table, path_prefix=temp_tsv, http_proxy=http_proxy, apikey=conn$apikey, endpoint=conn$endpoint)
 
   system2(embulk_exec, paste("guess", template_path, "-o", load_yml))
   system2(embulk_exec, paste("run", load_yml))
