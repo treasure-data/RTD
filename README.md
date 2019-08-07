@@ -4,7 +4,7 @@
 
 RTD is an official R client for Arm Treasure Data. It aims to make it simple to handle or connect from R to TD.
 
-Since RTD covers only basic execution on TD, we recommend to use RPresto or RJDBC for querying.
+Since RTD covers only basic execution on TD, we recommend to use [RPresto](https://github.com/prestodb/RPresto) or RJDBC for querying.
 
 ## Requirements
 
@@ -15,7 +15,13 @@ To upload data.frame from R, ensure you've installed embulk and set PATH for it.
 
 ## Install
 
-You can install via `devtools::install_github`.
+You can install from CRAN.
+
+```R
+install.packages("RTD")
+```
+
+Or, you can install via `devtools::install_github` for the latest development version.
 
 ```R
 install.packages("devtools") # Install devtools if needed
