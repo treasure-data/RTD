@@ -39,5 +39,5 @@ test_that("create_table works with mock", {
 test_that("delete_table works with mock", {
   stub_request("post", "https://api.treasuredata.com/v3/table/delete/sample_datasets/test") %>%
     to_return(body = '{"type": "log"}', status = 200)
-  expect_equal(delete_table(conn, "sample_datasets", "test"), "log")
+  expect_true(delete_table(conn, "sample_datasets", "test"))
 })
