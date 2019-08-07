@@ -23,9 +23,10 @@ Connect to TD
 \examples{
 \dontrun{
 client <- Td(
-  endpoint="api.treasuredata.com",
-  apikey="xxxxxx",
-  http_proxy="http://user:pass@proxy.domain.com:8080/")
+  endpoint = "api.treasuredata.com",
+  apikey = "xxxxxx",
+  http_proxy = "http://user:pass@proxy.domain.com:8080/"
+)
 }
 
 }

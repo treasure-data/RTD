@@ -21,7 +21,7 @@ Check table existence
 }
 \examples{
 \dontrun{
-conn <- Td(apikey="xxxxx")
+conn <- Td(apikey = "xxxxx")
 exist_table(conn, "mydb", "iris")
 }
 

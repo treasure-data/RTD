@@ -21,7 +21,7 @@ Delete a table
 }
 \examples{
 \dontrun{
-conn <- Td(apikey="xxxxx")
+conn <- Td(apikey = "xxxxx")
 delete_table(conn, "mydb", "iris")
 }
 
