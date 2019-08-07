@@ -43,6 +43,7 @@ Td <- function(endpoint, apikey, user_agent, headers, http_proxy=NULL) {
       endpoint <- DEFAULT_ENDPOINT
     }
   }
+  endpoint <- urltools::url_parse(endpoint)$domain
   if(missing(user_agent)) {
     user_agent = paste0("RTD/", packageVersion("RTD"))
   }
