@@ -7,6 +7,6 @@ out:
     endpoint: {% if env.endpoint %}{{ env.endpoint }}{% else %} api.treasuredata.com{% endif %}
     database: {{ env.dbname }}
     table: {{ env.table }}
-    mode: replace
+    mode: {{ env.mode }}
     default_timestamp_format: '%Y-%m-%d %H:%M:%S'
     {{ env.http_proxy }}

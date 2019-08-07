@@ -8,7 +8,8 @@ NULL
 #' @param table Target table name.
 #' @param df Input data.frame.
 #' @param embulk_dir Path to embulk. [optional]
-#' @param overwrite Flag for overwriting the table if exists. It doesn't overwrite database.
+#' @param overwrite Flag for overwriting the table if exists. It doesn't overwrite database. This flag sets "replace" mode for embulk-output-td.
+#' @param append Flag for append data into the table if exists. It doesn't overwrite database. This flag sets "append" mode for embulk-output-td.
 #'
 #' @examples
 #' \dontrun{
@@ -23,7 +24,7 @@ NULL
 #'
 #' @importFrom readr write_tsv
 #' @export
-td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE) {
+td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE, append = FALSE) {
   embulk_exec <- ifelse(missing(embulk_dir), "embulk", file.path(embulk_dir, "embulk"))
   if (.Platform$OS.type == "windows") {
     embulk_exec <- paste0(embulk_exec, ".bat")
@@ -41,10 +42,12 @@ td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE) {
   if (!exists_db) {
     create_database(conn, dbname)
   }
-  if (overwrite && exists_table) {
-    delete_table(conn, dbname, table)
+
+  # Use "replace" mode by default.
+  mode <- "replace"
+  if (append) {
+    mode <- "append"
   }
-  create_table(conn, dbname, table)
 
   template_path <- system.file("extdata", "tsv_upload.yml.liquid", package = "RTD")
   temp_dir <- tempdir()
