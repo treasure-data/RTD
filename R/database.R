@@ -6,7 +6,7 @@ NULL
 #'
 #' @examples
 #' \dontrun{
-#' conn <- Td(apikey="xxxx")
+#' conn <- Td(apikey = "xxxx")
 #' list_databases(conn)
 #' }
 #'
@@ -25,7 +25,7 @@ list_databases <- function(conn) {
 #'
 #' @examples
 #' \dontrun{
-#' conn <- Td(apikey="xxxx")
+#' conn <- Td(apikey = "xxxx")
 #' exist_database(conn, "mydb")
 #' }
 #'
@@ -44,15 +44,15 @@ exist_database <- function(conn, dbname) {
 #'
 #' @examples
 #' \dontrun{
-#' con <- Td(apikey="xxxxx")
+#' con <- Td(apikey = "xxxxx")
 #' create_database(con, "newdb")
 #' }
 #'
 #' @export
 #'
 create_database <- function(conn, dbname, params) {
-  if(missing(params)) {
-    params = character(0)
+  if (missing(params)) {
+    params <- character(0)
   }
   .post(conn, paste0("/v3/database/create/", dbname), params)
   return(TRUE)
@@ -66,7 +66,7 @@ create_database <- function(conn, dbname, params) {
 #'
 #' @examples
 #' \dontrun{
-#' conn <- Td(apikey="xxxx")
+#' conn <- Td(apikey = "xxxx")
 #' delete_database(conn, "mydb")
 #' }
 #'
