@@ -19,7 +19,7 @@ Delete a database
 }
 \examples{
 \dontrun{
-conn <- Td(apikey="xxxx")
+conn <- Td(apikey = "xxxx")
 delete_database(conn, "mydb")
 }
 

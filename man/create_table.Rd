@@ -21,7 +21,7 @@ Create a table
 }
 \examples{
 \dontrun{
-conn <- Td(apikey="xxxx")
+conn <- Td(apikey = "xxxx")
 create_table(conn, "mydb", "new_table")
 }
 

@@ -21,7 +21,7 @@ Create a database
 }
 \examples{
 \dontrun{
-con <- Td(apikey="xxxxx")
+con <- Td(apikey = "xxxxx")
 create_database(con, "newdb")
 }
 

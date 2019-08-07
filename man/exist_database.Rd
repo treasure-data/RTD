@@ -19,7 +19,7 @@ Check table existence
 }
 \examples{
 \dontrun{
-conn <- Td(apikey="xxxx")
+conn <- Td(apikey = "xxxx")
 exist_database(conn, "mydb")
 }
 

@@ -19,7 +19,7 @@ Show list of tables
 }
 \examples{
 \dontrun{
-conn <- Td(apikey="xxxxx")
+conn <- Td(apikey = "xxxxx")
 list_tables(conn, "mydb")
 }
 

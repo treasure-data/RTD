@@ -17,7 +17,7 @@ Show database list
 }
 \examples{
 \dontrun{
-conn <- Td(apikey="xxxx")
+conn <- Td(apikey = "xxxx")
 list_databases(conn)
 }
 

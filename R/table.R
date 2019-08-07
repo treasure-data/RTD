@@ -11,7 +11,7 @@ NULL
 #'
 #' @examples
 #' \dontrun{
-#' conn <- Td(apikey="xxxxx")
+#' conn <- Td(apikey = "xxxxx")
 #' exist_table(conn, "mydb", "iris")
 #' }
 #'
@@ -30,7 +30,7 @@ exist_table <- function(conn, dbname, table) {
 #'
 #' @examples
 #' \dontrun{
-#' conn <- Td(apikey="xxxxx")
+#' conn <- Td(apikey = "xxxxx")
 #' list_tables(conn, "mydb")
 #' }
 #'
@@ -51,7 +51,7 @@ list_tables <- function(conn, dbname) {
 #'
 #' @examples
 #' \dontrun{
-#' conn <- Td(apikey="xxxx")
+#' conn <- Td(apikey = "xxxx")
 #' create_table(conn, "mydb", "new_table")
 #' }
 #'
@@ -71,7 +71,7 @@ create_table <- function(conn, dbname, table) {
 #'
 #' @examples
 #' \dontrun{
-#' conn <- Td(apikey="xxxxx")
+#' conn <- Td(apikey = "xxxxx")
 #' delete_table(conn, "mydb", "iris")
 #' }
 #'
@@ -79,5 +79,5 @@ create_table <- function(conn, dbname, table) {
 #'
 delete_table <- function(conn, dbname, table) {
   res <- .post(conn, paste0("/v3/table/delete/", dbname, "/", table), character(0))
-  return(res$type)
+  return(TRUE)
 }
