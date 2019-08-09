@@ -28,22 +28,12 @@ install.packages("nycflights13")
 library(RTD)
 
 client <- Td(apikey = Sys.getenv("TD_API_KEY"), endpoint="api.treasuredata.com")
-td_upload(client, "test", "flights", nycflights13::flights )
+td_upload(client, "test", "flights", nycflights13::flights)
 ```
 
-
-Since RPresto v1.3.2 lacks [adding headers for some funcitons](https://github.com/prestodb/RPresto/issues/103), we need to set `httr` config.
 
 ```{r}
 library(RPresto)
-
-httr::set_config(
-  httr::add_headers("X-Presto-User"=Sys.getenv("TD_API_KEY"))
-)
-```
-
-
-```{r}
 library(dplyr)
 
 db <- src_presto(
