@@ -17,18 +17,23 @@ LazyData: true
 RoxygenNote: 6.1.1
 Collate: 
     'TdClient.R'
+    'bulk_import.R'
     'database.R'
     'table.R'
     'td.R'
+    'job.R'
 Imports: 
     readr (>= 1.2.1),
     httr(>= 1.4.0),
     openssl,
     jsonlite,
     methods,
-    urltools
+    urltools,
+    uuid
 Suggests: 
     testthat (>= 2.0.1),
     mockery (>= 0.4.1.1),
     dplyr (>= 0.7.8),
     webmockr
+Remotes:
+    crowding/msgpack-r

@@ -81,10 +81,50 @@ td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE, ap
   system2(embulk_exec, paste("run", load_yml))
 }
 
+td_bulk_upload <- function(conn, dbname, table, df, overwrite = FALSE, append = FALSE){
+  exists_db <- exist_database(conn, dbname)
+  exists_table <- exist_table(conn, dbname, table)
+  if (!overwrite && !append && exists_table) {
+    stop(paste0('"', dbname, ".", table, '" already exists.'))
+  }
+  if (!exists_db) {
+    create_database(conn, dbname)
+  }
+  if (overwrite) {
+    delete_table(conn, dbname, table)
+    create_table(conn, dbname, table)
+  }
+  if (!exists_table) {
+    create_table(conn, dbname, table)
+  }
+
+  sess_name <- uuid::UUIDgenerate()
+  create_bulk_import(conn, sess_name, dbname, table)
+  tf <- tempfile(fileext = "msgpack.gz")
+  on.exit(unlink(tf))
+  msgconn <- gzfile(tf, open="w+b")
+  if (!("time" %in% colnames(df))) {
+    df$time = as.integer(Sys.time())
+  }
+  apply(df, 1, function(x) {msgpack::writeMsg(x, msgconn)})
+  close(msgconn)
+  part_name <- "part"
+  bulk_import_upload_part(conn, sess_name, part_name, tf)
+  freeze_bulk_import(conn, sess_name)
+  job_id <- perform_bulk_import(conn, sess_name)
+  job_wait(conn, job_id)
+  res <- commit_bulk_import(conn, sess_name)
+  status <- show_bulk_import(conn, sess_name)
+  wait_bulk_import(conn, sess_name)
+  delete_bulk_import(conn, sess_name)
+}
+
 .guess_column_types <- function(df) {
   guessed_types <- sapply(df, function(x) {
     if (is.factor(x) || is.character(x)) {
       "string"
+    } else if (is.list(x)) {
+      "list"
     } else if (all(x %% 1 == 0)) {
       "int"
     } else {
