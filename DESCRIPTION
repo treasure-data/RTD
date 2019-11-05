@@ -19,9 +19,9 @@ Collate:
     'TdClient.R'
     'bulk_import.R'
     'database.R'
+    'job.R'
     'table.R'
     'td.R'
-    'job.R'
 Imports: 
     readr (>= 1.2.1),
     httr(>= 1.4.0),

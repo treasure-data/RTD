@@ -5,7 +5,7 @@ library(mockery)
 con <- Td(apikey = "xxxxx")
 embulk_exec <- if (.Platform$OS.type == "windows") "embulk.bat" else "embulk"
 
-
+# TODO: test for "bulk_import" mode
 test_that("td_upload works with mock", {
   template_path <- system.file("extdata", "tsv_upload.yml.liquid", package = "RTD")
   m <- mock(0, 0)
@@ -19,7 +19,7 @@ test_that("td_upload works with mock", {
     `readr::write_tsv` = mock(TRUE),
     `Sys.which` = mock("/home/RTD/bin/embulk"),
     `system2` = m, {
-      td_upload(con, "test", "iris", iris)
+      td_upload(con, "test", "iris", iris, mode = "embulk")
     }
   )
   expect_args(m, 1, embulk_exec, paste("guess", template_path, "-o /tmp/load.yml"))
@@ -40,7 +40,7 @@ test_that("td_upload works with mock when the table already exists", {
     `Sys.which` = mock("/home/RTD/bin/embulk", cycle = TRUE),
     `system2` = m, {
       expect_error(td_upload(con, "test", "iris", iris), ".* already exists.")
-      td_upload(con, "test", "iris", iris, overwrite = TRUE)
+      td_upload(con, "test", "iris", iris, mode = "embulk", overwrite = TRUE)
     }
   )
   expect_args(m, 1, embulk_exec, paste("guess", template_path, "-o /tmp/load.yml"))
