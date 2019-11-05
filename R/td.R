@@ -93,24 +93,25 @@ td_embulk_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FA
 }
 
 td_bulk_upload <- function(conn, dbname, table, df, overwrite = FALSE, append = FALSE){
-  exists_table <- exist_table(conn, dbname, table)
   if (overwrite) {
     delete_table(conn, dbname, table)
     create_table(conn, dbname, table)
   }
+  exists_table <- exist_table(conn, dbname, table)
   if (!exists_table) {
     create_table(conn, dbname, table)
   }
 
   sess_name <- uuid::UUIDgenerate()
   create_bulk_import(conn, sess_name, dbname, table)
-  tf <- tempfile(fileext = "msgpack.gz")
+  tf <- tempfile(fileext = ".msgpack.gz")
   on.exit(unlink(tf))
   msgconn <- gzfile(tf, open="w+b")
   if (!("time" %in% colnames(df))) {
     df$time = as.integer(Sys.time())
   }
-  apply(df, 1, function(x) {msgpack::writeMsg(x, msgconn)})
+  df_conv <- dplyr::mutate_if(dplyr::mutate_all(df, utils::type.convert), is.factor, as.character)
+  apply(df_conv, 1, function(x) {msgpack::writeMsg(x, msgconn)})
   close(msgconn)
   part_name <- "part"
   bulk_import_upload_part(conn, sess_name, part_name, tf)
