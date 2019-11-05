@@ -28,7 +28,7 @@ install.packages("nycflights13")
 library(RTD)
 
 client <- Td(apikey = Sys.getenv("TD_API_KEY"), endpoint="api.treasuredata.com")
-td_upload(client, "test", "flights", nycflights13::flights)
+td_upload(client, "test", "flights", nycflights13::flights, overwrite=T)
 ```
 
 
