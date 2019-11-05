@@ -4,8 +4,8 @@
 \alias{td_upload}
 \title{Upload data.frame to TD}
 \usage{
-td_upload(conn, dbname, table, df, embulk_dir, overwrite = FALSE,
-  append = FALSE)
+td_upload(conn, dbname, table, df, mode = "bulk_import", embulk_dir,
+  overwrite = FALSE, append = FALSE)
 }
 \arguments{
 \item{conn}{\code{Td} connection}
@@ -15,6 +15,8 @@ td_upload(conn, dbname, table, df, embulk_dir, overwrite = FALSE,
 \item{table}{Target table name.}
 
 \item{df}{Input data.frame.}
+
+\item{mode}{Write mode. "bulk_import" or "embulk". Default: "bulk_import"}
 
 \item{embulk_dir}{Path to embulk. [optional]}
 

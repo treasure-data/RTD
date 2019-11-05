@@ -161,3 +161,25 @@ check_status_code <- function(response) {
   content <- httr::content(response, as = "text", encoding = "UTF-8")
   jsonlite::fromJSON(content, simplifyVector = FALSE)
 }
+
+.put <- function(conn, path, params, headers = NULL, ...) {
+  req <- .build_request(conn, path = path, headers = headers, ...)
+  status <- 503L
+  retries <- 3
+  while (status == 503L || (retries > 0 && status >= 400L)) {
+    wait()
+    if (inherits(params, "form_file")){
+      body <- params
+    } else {
+      body <- enc2utf8(params)
+    }
+    response <- httr::PUT(req$url, body = body, req$headers)
+    status <- as.integer(httr::status_code(response))
+    if (status >= 400L && status != 503L) {
+      retries <- retries - 1
+    }
+  }
+  check_status_code(response)
+  content <- httr::content(response, as = "text", encoding = "UTF-8")
+  jsonlite::fromJSON(content, simplifyVector = FALSE)
+}

@@ -7,6 +7,7 @@ NULL
 #' @param dbname Target destination database name.
 #' @param table Target table name.
 #' @param df Input data.frame.
+#' @param mode Write mode. "bulk_import" or "embulk". Default: "bulk_import"
 #' @param embulk_dir Path to embulk. [optional]
 #' @param overwrite Flag for overwriting the table if exists. It doesn't overwrite database. This flag sets "replace" mode for embulk-output-td.
 #' @param append Flag for append data into the table if exists. It doesn't overwrite database. This flag sets "append" mode for embulk-output-td.
@@ -27,15 +28,7 @@ NULL
 #'
 #' @importFrom readr write_tsv
 #' @export
-td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE, append = FALSE) {
-  embulk_exec <- ifelse(missing(embulk_dir), "embulk", file.path(embulk_dir, "embulk"))
-  if (.Platform$OS.type == "windows") {
-    embulk_exec <- paste0(embulk_exec, ".bat")
-  }
-
-  if (Sys.which(embulk_exec) == "") {
-    stop("embulk isn't found. Ensure PATH is set for embulk or use embulk_dir option.")
-  }
+td_upload <- function(conn, dbname, table, df, mode = "bulk_import", embulk_dir, overwrite = FALSE, append = FALSE) {
 
   exists_db <- exist_database(conn, dbname)
   exists_table <- exist_table(conn, dbname, table)
@@ -46,10 +39,28 @@ td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE, ap
     create_database(conn, dbname)
   }
 
+  if (mode == "bulk_import") {
+    td_bulk_upload(conn, dbname, table, df, overwrite = overwrite, append = append)
+  } else if (mode == "embulk") {
+    td_embulk_upload(conn, dbname, table, df, embulk_dir, overwrite = overwrite, append = append)
+  }
+
+}
+
+td_embulk_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE, append = FALSE) {
+  embulk_exec <- ifelse(missing(embulk_dir), "embulk", file.path(embulk_dir, "embulk"))
+  if (.Platform$OS.type == "windows") {
+    embulk_exec <- paste0(embulk_exec, ".bat")
+  }
+
+  if (Sys.which(embulk_exec) == "") {
+    stop("Unable to find embulk. Ensure PATH is set for embulk or use embulk_dir option.")
+  }
+
   # Use "replace" mode by default.
-  mode <- "replace"
+  write_mode <- "replace"
   if (append) {
-    mode <- "append"
+    write_mode <- "append"
   }
 
   template_path <- system.file("extdata", "tsv_upload.yml.liquid", package = "RTD")
@@ -75,16 +86,49 @@ td_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FALSE, ap
   load_yml <- file.path(temp_dir, "load.yml")
 
   # Set environment variable for embulk
-  Sys.setenv(dbname = dbname, table = table, path_prefix = temp_tsv, http_proxy = http_proxy, apikey = conn$apikey, endpoint = conn$endpoint, mode = mode)
+  Sys.setenv(dbname = dbname, table = table, path_prefix = temp_tsv, http_proxy = http_proxy, apikey = conn$apikey, endpoint = conn$endpoint, mode = write_mode)
 
   system2(embulk_exec, paste("guess", template_path, "-o", load_yml))
   system2(embulk_exec, paste("run", load_yml))
+}
+
+td_bulk_upload <- function(conn, dbname, table, df, overwrite = FALSE, append = FALSE){
+  exists_table <- exist_table(conn, dbname, table)
+  if (overwrite) {
+    delete_table(conn, dbname, table)
+    create_table(conn, dbname, table)
+  }
+  if (!exists_table) {
+    create_table(conn, dbname, table)
+  }
+
+  sess_name <- uuid::UUIDgenerate()
+  create_bulk_import(conn, sess_name, dbname, table)
+  tf <- tempfile(fileext = "msgpack.gz")
+  on.exit(unlink(tf))
+  msgconn <- gzfile(tf, open="w+b")
+  if (!("time" %in% colnames(df))) {
+    df$time = as.integer(Sys.time())
+  }
+  apply(df, 1, function(x) {msgpack::writeMsg(x, msgconn)})
+  close(msgconn)
+  part_name <- "part"
+  bulk_import_upload_part(conn, sess_name, part_name, tf)
+  freeze_bulk_import(conn, sess_name)
+  job_id <- perform_bulk_import(conn, sess_name)
+  job_wait(conn, job_id)
+  res <- commit_bulk_import(conn, sess_name)
+  status <- show_bulk_import(conn, sess_name)
+  wait_bulk_import(conn, sess_name)
+  delete_bulk_import(conn, sess_name)
 }
 
 .guess_column_types <- function(df) {
   guessed_types <- sapply(df, function(x) {
     if (is.factor(x) || is.character(x)) {
       "string"
+    } else if (is.list(x)) {
+      "list"
     } else if (all(x %% 1 == 0)) {
       "int"
     } else {
