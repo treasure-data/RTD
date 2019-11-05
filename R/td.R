@@ -110,8 +110,7 @@ td_bulk_upload <- function(conn, dbname, table, df, overwrite = FALSE, append = 
   if (!("time" %in% colnames(df))) {
     df$time = as.integer(Sys.time())
   }
-  df_conv <- dplyr::mutate_if(dplyr::mutate_all(df, utils::type.convert), is.factor, as.character)
-  apply(df_conv, 1, function(x) {msgpack::writeMsg(x, msgconn)})
+  apply(df, 1, function(x) {msgpack::writeMsg(x, msgconn)})
   close(msgconn)
   part_name <- "part"
   bulk_import_upload_part(conn, sess_name, part_name, tf)
