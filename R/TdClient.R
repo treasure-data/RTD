@@ -145,13 +145,18 @@ check_status_code <- function(response) {
   jsonlite::fromJSON(content, simplifyVector = FALSE)
 }
 
-.post <- function(conn, path, params, headers = NULL, ...) {
+.post <- function(conn, path, params=NULL, headers = NULL, query = NULL, ...) {
   req <- .build_request(conn, path = path, headers = headers, ...)
   status <- 503L
   retries <- 3
   while (status == 503L || (retries > 0 && status >= 400L)) {
     wait()
-    response <- httr::POST(req$url, body = enc2utf8(params), req$headers)
+    if(!missing(params)) {
+      body <- enc2utf8(params)
+    } else {
+      body <- NULL
+    }
+    response <- httr::POST(req$url, body = body, query=query, req$headers)
     status <- as.integer(httr::status_code(response))
     if (status >= 400L && status != 503L) {
       retries <- retries - 1
