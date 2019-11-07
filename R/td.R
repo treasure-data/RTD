@@ -1,4 +1,4 @@
-#' @include table.R database.R
+#' @include table.R database.R install_msgpack.R
 NULL
 
 #' Upload data.frame to TD
@@ -93,6 +93,8 @@ td_embulk_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FA
 }
 
 td_bulk_upload <- function(conn, dbname, table, df, overwrite = FALSE, append = FALSE){
+  # Check if msgpack package installed
+  check_msgpack()
   if (overwrite) {
     delete_table(conn, dbname, table)
     create_table(conn, dbname, table)

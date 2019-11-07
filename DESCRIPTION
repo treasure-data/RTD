@@ -14,11 +14,14 @@ SystemRequirements: embulk, embulk-output-td
 License: Apache License 2.0 | file LICENSE
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/chezou/RTD
+BugReports: https://github.com/chezou/RTD/issues
 RoxygenNote: 6.1.1
 Collate: 
     'TdClient.R'
     'bulk_import.R'
     'database.R'
+    'install_msgpack.R'
     'job.R'
     'table.R'
     'td.R'
@@ -30,11 +33,10 @@ Imports:
     methods,
     urltools,
     uuid,
-    msgpack
 Suggests: 
     testthat (>= 2.0.1),
     mockery (>= 0.4.1.1),
     dplyr (>= 0.7.8),
-    webmockr
-Remotes:
-    crowding/msgpack-r
+    webmockr,
+    msgpack,
+    devtools
