@@ -92,6 +92,7 @@ td_embulk_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FA
   system2(embulk_exec, paste("run", load_yml))
 }
 
+#' @importFrom dplyr %>%
 td_bulk_upload <- function(conn, dbname, table, df, overwrite = FALSE, append = FALSE){
   # Check if msgpack package installed
   check_msgpack()
@@ -113,7 +114,10 @@ td_bulk_upload <- function(conn, dbname, table, df, overwrite = FALSE, append = 
   if (!("time" %in% colnames(df))) {
     df$time = as.integer(Sys.time())
   }
-  apply(df, 1, function(x) {msgpack::writeMsg(x, msgconn)})
+
+  df %>% purrr::map_if(is.factor, as.character) %>%
+    purrr::pmap(list) %>% lapply(function(x){msgpack::writeMsg(x, msgconn)})
+
   close(msgconn)
   part_name <- "part"
   message("Created msgpack file")
@@ -130,8 +134,6 @@ td_bulk_upload <- function(conn, dbname, table, df, overwrite = FALSE, append = 
   wait_bulk_import(conn, sess_name)
   delete_bulk_import(conn, sess_name)
   message("Finished bulk import")
-  exclude_col <- names(df) %in% c("time")
-  update_schema(conn, dbname, table, schema=.guess_column_types(df[!exclude_col]))
 }
 
 .guess_type <- function(x) {
