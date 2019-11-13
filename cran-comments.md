@@ -5,8 +5,13 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+❯ checking package dependencies ... NOTE
+  Package suggested but not available for checking: ‘msgpack’
+
+0 errors ✔ | 0 warnings ✔ | 1 note ✖
+
+msgpack is optional dpendent package available on GitHub and one RTD function depends on it. RTD provides installation check for it and recommend to install it interactively.
 
 ## revdepcheck results
 
-There are currently no downstream dependencies for this package
+There are currently no downstream dependencies for this package.
