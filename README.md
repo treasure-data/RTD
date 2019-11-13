@@ -8,10 +8,24 @@ Since RTD covers only basic execution on TD, we recommend to use [RPresto](https
 
 ## Requirements
 
-To upload data.frame from R, ensure you've installed embulk and set PATH for it.
+To upload data.frame from R, there are two options:
+
+1. embulk
+2. bulk-import
+
+If you want to use embulk, ensure you've installed embulk and set PATH for it.
 
 - [embulk](https://www.embulk.org/)
 - [embulk-output-td](https://github.com/treasure-data/embulk-output-td)
+
+If you want to use bulk-import, you have to install `msgpack` package.
+
+```R
+install.packages("devtools") # Install devtools if needed
+devtools::install_github("crowding/msgpack-r")
+```
+
+Or, if you run `td_upload()` function first time, you can install `msgpack` package interactively.
 
 ## Install
 
@@ -27,14 +41,6 @@ Or, you can use install-github.me instead like:
 ```R
 source("https://install-github.me/chezou/RTD")
 ```
-
-If you want to use bulk import for uploading data frame, you need to install `msgpack` package as well.
-
-```R
-devtools::install_github("crowding/msgpack-r")
-```
-
-Or, if you run `td_upload()` function first time, you can install `msgpack` package interactively.
 
 ## Example
 
