@@ -10,7 +10,7 @@ Maintainer: Aki Ariga <chezou@gmail.com>
 Description: 
   Upload R data.frame to Arm Treasure Data, see <https://www.treasuredata.com/>. 
   You can execute database or table handling for resources on Arm Treasure Data.
-SystemRequirements: embulk, embulk-output-td
+SystemRequirements: embulk, embulk-output-td, msgpack (<https://github.com/crowding/msgpack-r>)
 License: Apache License 2.0 | file LICENSE
 Encoding: UTF-8
 LazyData: true
