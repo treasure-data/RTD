@@ -10,7 +10,7 @@
 
 0 errors ✔ | 0 warnings ✔ | 1 note ✖
 
-msgpack is optional dpendent package available on GitHub and one RTD function depends on it. RTD provides installation check for it and recommend to install it interactively.
+msgpack is optional dpendent package available on [GitHub repo](https://github.com/crowding/msgpack-r) and one RTD function depends on it. RTD provides installation check and intaractive installation function for it.
 
 ## revdepcheck results
 
