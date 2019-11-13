@@ -28,6 +28,14 @@ install.packages("devtools") # Install devtools if needed
 devtools::install_github("chezou/RTD")
 ```
 
+If you want to use bulk import for uploading data frame, you need to install `msgpack` package as well.
+
+```R
+devtools::install_github("crowding/msgpack-r")
+```
+
+Or, if you run `td_upload()` function first time, you can install `msgpack` package interactively.
+
 ## Example
 
 See also [RTD_example.Rmd](https://github.com/chezou/RTD/blob/master/RTD_example.Rmd) or [RPubs](https://rpubs.com/chezou/TD-from-RPresto-RTD).
