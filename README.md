@@ -38,7 +38,7 @@ Or, if you run `td_upload()` function first time, you can install `msgpack` pack
 
 ## Example
 
-See also [RTD_example.Rmd](https://github.com/chezou/RTD/blob/master/RTD_example.Rmd) or [RPubs](https://rpubs.com/chezou/TD-from-RPresto-RTD).
+See also [RTD_example.Rmd](./RTD_example.Rmd) or [RPubs](https://rpubs.com/chezou/TD-from-RPresto-RTD).
 
 ```R
 library(RTD)
