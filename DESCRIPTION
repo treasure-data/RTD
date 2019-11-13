@@ -41,3 +41,5 @@ Suggests:
     webmockr,
     msgpack,
     devtools
+Remotes:
+    crowding/msgpack-r

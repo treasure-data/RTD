@@ -15,17 +15,17 @@ To upload data.frame from R, ensure you've installed embulk and set PATH for it.
 
 ## Install
 
-You can install from CRAN.
-
-```R
-install.packages("RTD")
-```
-
-Or, you can install via `devtools::install_github` for the latest development version.
+You can install via `devtools::install_github` for the latest development version.
 
 ```R
 install.packages("devtools") # Install devtools if needed
 devtools::install_github("chezou/RTD")
+```
+
+Or, you can use install-github.me instead like:
+
+```R
+source("https://install-github.me/chezou/RTD")
 ```
 
 If you want to use bulk import for uploading data frame, you need to install `msgpack` package as well.
