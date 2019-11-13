@@ -4,8 +4,9 @@
 * Add bulk_import option which enables to upload dataframe without embulk (#11, #12, #14)
 * Add update_schema in table.R (#13)
 * Add append mode for embulk import (#9)
+* Stop releasing on CRAN
 
-# RTD 0.1.1 (unreleased on CRAN)
+# RTD 0.1.1
 
 * Add http_proxy configuration
 
