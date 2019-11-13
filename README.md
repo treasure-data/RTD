@@ -33,13 +33,13 @@ You can install via `devtools::install_github` for the latest development versio
 
 ```R
 install.packages("devtools") # Install devtools if needed
-devtools::install_github("chezou/RTD")
+devtools::install_github("chezou/RTD@v0.2.0")
 ```
 
 Or, you can use install-github.me instead like:
 
 ```R
-source("https://install-github.me/chezou/RTD")
+source("https://install-github.me/chezou/RTD@v0.2.0")
 ```
 
 ## Example
