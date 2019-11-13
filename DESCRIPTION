@@ -1,10 +1,10 @@
 Package: RTD
 Title: Simple TD API Client
-Version: 0.1.1.9000
+Version: 0.2.0
 Authors@R: 
     person(given = "Aki",
            family = "Ariga",
-           role = c("aut", "cre"),
+           role = c("aut", "cre", "cph"),
            email = "chezou@gmail.com")
 Maintainer: Aki Ariga <chezou@gmail.com>
 Description: 
