@@ -1,6 +1,6 @@
 # RTD
 
-[![Travis build status](https://travis-ci.org/chezou/RTD.svg?branch=master)](https://travis-ci.org/chezou/RTD)
+[![Travis build status](https://travis-ci.org/treasure-data/RTD.svg?branch=master)](https://travis-ci.org/treasure-data/RTD)
 
 RTD is an official R client for Arm Treasure Data. It aims to make it simple to handle or connect from R to TD.
 
@@ -33,13 +33,13 @@ You can install via `devtools::install_github` for the latest development versio
 
 ```R
 install.packages("devtools") # Install devtools if needed
-devtools::install_github("chezou/RTD@v0.2.0")
+devtools::install_github("treasure-data/RTD@v0.2.0")
 ```
 
 Or, you can use install-github.me instead like:
 
 ```R
-source("https://install-github.me/chezou/RTD@v0.2.0")
+source("https://install-github.me/treasure-data/RTD@v0.2.0")
 ```
 
 ## Example
