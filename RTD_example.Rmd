@@ -18,7 +18,7 @@ Let's install RPresto and RTD packages.
 
 ```{r eval=FALSE}
 install.packages(c("RPresto", "devtools", "dplyr"))
-devtools::install_github("chezou/RTD")
+devtools::install_github("treasure-data/RTD")
 devtools::install_github("crowding/msgpack-r")
 ```
 
@@ -108,4 +108,4 @@ delete_table(client, "test", "flights")
 
 ## References
 - [RPresto](https://github.com/prestodb/RPresto)
-- [RTD](https://github.com/chezou/RTD)
+- [RTD](https://github.com/treasure-data/RTD)
