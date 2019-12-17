@@ -17,7 +17,7 @@ You also have to set your "TD_API_KEY" is set as an environement variable.
 Let's install RPresto and RTD packages.
 
 ```{r eval=FALSE}
-install.packages(c("RPresto", "devtools", "dplyr"))
+install.packages(c("RPresto", "devtools", "dplyr", "dbplyr", "ggplot2"))
 devtools::install_github("treasure-data/RTD")
 devtools::install_github("crowding/msgpack-r")
 ```
