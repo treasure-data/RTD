@@ -38,7 +38,7 @@ exist_table <- function(conn, dbname, table) {
 #'
 list_tables <- function(conn, dbname) {
   res <- .get(conn, paste0("/v3/table/list/", dbname))
-  return(as.data.frame(do.call("rbind", res$tables)))
+  return(dplyr::tibble(as.data.frame(do.call("rbind", res$tables))))
 }
 
 
