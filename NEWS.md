@@ -1,3 +1,7 @@
+# RTD 0.3.0
+
+* Support dplyr 1.0.0
+
 # RTD 0.2.0
 
 * Fixed API key handling (#8)

@@ -14,7 +14,7 @@ NULL
 #'
 list_databases <- function(conn) {
   res <- .get(conn, "/v3/database/list")
-  return(as.data.frame(do.call("rbind", res$databases)))
+  return(dplyr::tibble(as.data.frame(do.call("rbind", res$databases))))
 }
 
 #' Check table existence
