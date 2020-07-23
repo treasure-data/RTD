@@ -1,7 +1,6 @@
 # RTD
 
 ![R-CMD-check](https://github.com/treasure-data/RTD/workflows/R-CMD-check/badge.svg)
-[![Travis build status](https://travis-ci.org/treasure-data/RTD.svg?branch=master)](https://travis-ci.org/treasure-data/RTD)
 
 RTD is an official R client for Arm Treasure Data. It aims to make it simple to handle or connect from R to TD.
 
