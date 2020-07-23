@@ -4,8 +4,16 @@
 \alias{td_upload}
 \title{Upload data.frame to TD}
 \usage{
-td_upload(conn, dbname, table, df, mode = "bulk_import", embulk_dir,
-  overwrite = FALSE, append = FALSE)
+td_upload(
+  conn,
+  dbname,
+  table,
+  df,
+  mode = "bulk_import",
+  embulk_dir,
+  overwrite = FALSE,
+  append = FALSE
+)
 }
 \arguments{
 \item{conn}{\code{Td} connection}

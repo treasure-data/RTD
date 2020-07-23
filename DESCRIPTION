@@ -1,6 +1,6 @@
 Package: RTD
 Title: Simple TD API Client
-Version: 0.3.0
+Version: 0.3.0.900
 Authors@R: 
     person(given = "Aki",
            family = "Ariga",
@@ -10,18 +10,17 @@ Maintainer: Aki Ariga <ariga@treasure-data.com>
 Description: 
   Upload R data.frame to Arm Treasure Data, see <https://www.treasuredata.com/>. 
   You can execute database or table handling for resources on Arm Treasure Data.
-SystemRequirements: embulk, embulk-output-td, msgpack (<https://github.com/crowding/msgpack-r>)
+SystemRequirements: embulk, embulk-output-td
 License: Apache License 2.0 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/treasure-data/RTD
 BugReports: https://github.com/treasure-data/RTD/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Collate: 
     'TdClient.R'
     'bulk_import.R'
     'database.R'
-    'install_msgpack.R'
     'job.R'
     'table.R'
     'td.R'
@@ -31,6 +30,7 @@ Imports:
     dplyr (>= 1.0.0),
     jsonlite,
     methods,
+    RcppMsgPack,
     urltools,
     uuid,
     purrr
@@ -39,7 +39,4 @@ Suggests:
     mockery (>= 0.4.1.1),
     openssl,
     webmockr,
-    msgpack,
     devtools
-Remotes:
-    crowding/msgpack-r

@@ -18,14 +18,6 @@ If you want to use embulk, ensure you've installed embulk and set PATH for it.
 - [embulk](https://www.embulk.org/)
 - [embulk-output-td](https://github.com/treasure-data/embulk-output-td)
 
-If you want to use bulk-import, you have to install `msgpack` package.
-
-```R
-install.packages("devtools") # Install devtools if needed
-devtools::install_github("crowding/msgpack-r")
-```
-
-Or, if you run `td_upload()` function first time, you can install `msgpack` package interactively.
 
 ## Install
 
@@ -33,13 +25,13 @@ You can install via `devtools::install_github` for the latest development versio
 
 ```R
 install.packages("devtools") # Install devtools if needed
-devtools::install_github("treasure-data/RTD@v0.2.0")
+devtools::install_github("treasure-data/RTD@v0.3.0")
 ```
 
 Or, you can use install-github.me instead like:
 
 ```R
-source("https://install-github.me/treasure-data/RTD@v0.2.0")
+source("https://install-github.me/treasure-data/RTD@v0.3.0")
 ```
 
 ## Example

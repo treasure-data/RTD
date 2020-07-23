@@ -108,8 +108,9 @@ list_bulk_import_parts <- function(conn, name) {
 #, if (!("time" %in% colnames(df))) {
 #,   df$time = as.integer(Sys.time())
 #, }
-#, df_conv <- dplyr::mutate_if(dplyr::mutate_all(df, type.convert), is.factor, as.character)
-#, apply(df_conv, 1, function(x) {msgpack::writeMsg(x, msgconn)})
+#, buf <- df %>% purrr::map_if(is.factor, as.character) %>%
+#, purrr::pmap(list) %>% do.call(RcppMsgPack::msgpack_pack, .)
+#, writeBin(buf, msgconn)
 #, close(msgconn)
 #, bulk_import_upload_part(conn, sess_name, "part", tf)
 #' }

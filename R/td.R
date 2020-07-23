@@ -1,4 +1,4 @@
-#' @include table.R database.R install_msgpack.R
+#' @include table.R database.R
 NULL
 
 #' Upload data.frame to TD
@@ -94,8 +94,6 @@ td_embulk_upload <- function(conn, dbname, table, df, embulk_dir, overwrite = FA
 
 #' @importFrom dplyr %>%
 td_bulk_upload <- function(conn, dbname, table, df, overwrite = FALSE, append = FALSE){
-  # Check if msgpack package installed
-  check_msgpack()
   exists_table <- exist_table(conn, dbname, table)
   if (exists_table && overwrite) {
     delete_table(conn, dbname, table)
@@ -115,8 +113,12 @@ td_bulk_upload <- function(conn, dbname, table, df, overwrite = FALSE, append = 
     df$time = as.integer(Sys.time())
   }
 
-  df %>% purrr::map_if(is.factor, as.character) %>%
-    purrr::pmap(list) %>% lapply(function(x){msgpack::writeMsg(x, msgconn)})
+  # For workaround for R CMD check.
+  # See also: https://cran.r-project.org/web/packages/future/vignettes/future-4-issues.html
+  . <- NULL
+  buf <- df %>% purrr::map_if(is.factor, as.character) %>%
+    purrr::pmap(list) %>% do.call(RcppMsgPack::msgpack_pack, .)
+  writeBin(buf, msgconn)
 
   close(msgconn)
   part_name <- "part"
