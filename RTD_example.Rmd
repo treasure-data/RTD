@@ -9,8 +9,7 @@ This is an example notebook to connect Arm Treasure Data (TD) from R. If you wan
 
 While RPresto enables you to query TD easily, it can't handle some TD execution. In this notebook, I will explain how to query with RPresto and how to execute basic TD operation.
 
-Before installing R packages, you have to install devtools package and msgpack-r packagewith `install.packages("devtools"); devtools::install_github("crowding/msgpack-r")`. 
-Or, you can use [embulk](https://www.embulk.org/) and [embulk-output-td](https://github.com/treasure-data/embulk-output-td) plugin. To enable embulk, ensure PATH for `embulk` command to be set appropriately. 
+If you want to use [embulk](https://www.embulk.org/) and [embulk-output-td](https://github.com/treasure-data/embulk-output-td) plugin, ensure PATH for `embulk` command to be set appropriately. 
 
 You also have to set your "TD_API_KEY" is set as an environement variable.
 
@@ -19,7 +18,6 @@ Let's install RPresto and RTD packages.
 ```{r eval=FALSE}
 install.packages(c("RPresto", "devtools", "dplyr", "dbplyr", "ggplot2"))
 devtools::install_github("treasure-data/RTD")
-devtools::install_github("crowding/msgpack-r")
 ```
 
 We will use nycflights13 package for analysis. Copy flights data to TD.
