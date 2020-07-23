@@ -11,3 +11,4 @@
 ^revdep$
 ^RTD.Rcheck$
 ^.java-version$
+^.github$

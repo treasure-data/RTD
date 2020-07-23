@@ -1,3 +1,7 @@
+# RTD 0.4.0
+
+* Replace msgpack-r to RcppMsgPack
+
 # RTD 0.3.0
 
 * Support dplyr 1.0.0
