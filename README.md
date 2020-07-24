@@ -25,13 +25,13 @@ You can install via `devtools::install_github` for the latest development versio
 
 ```R
 install.packages("devtools") # Install devtools if needed
-devtools::install_github("treasure-data/RTD@v0.3.0")
+devtools::install_github("treasure-data/RTD@v0.4.0")
 ```
 
 Or, you can use install-github.me instead like:
 
 ```R
-source("https://install-github.me/treasure-data/RTD@v0.3.0")
+source("https://install-github.me/treasure-data/RTD@v0.4.0")
 ```
 
 ## Example
