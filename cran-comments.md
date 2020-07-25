@@ -25,3 +25,9 @@ This is due to change E-mail address of maintaner.
 ## Downstream dependencies
 
 There is no downstream dependencies.
+
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+* Make relative URL absolute in README.md
