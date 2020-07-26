@@ -1,3 +1,7 @@
+# RTD 0.4.1
+
+* Resubmit for CRAN. Only document update.
+
 # RTD 0.4.0
 
 * Replace msgpack-r to RcppMsgPack
