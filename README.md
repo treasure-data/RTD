@@ -21,17 +21,23 @@ If you want to use embulk, ensure you've installed embulk and set PATH for it.
 
 ## Install
 
+As of version 0.4.1, RTD has been back to CRAN. You can install RTD as:
+
+```R
+install.packages("RTD")
+```
+
 You can install via `devtools::install_github` for the latest development version.
 
 ```R
 install.packages("devtools") # Install devtools if needed
-devtools::install_github("treasure-data/RTD@v0.4.0")
+devtools::install_github("treasure-data/RTD@v0.4.1")
 ```
 
 Or, you can use install-github.me instead like:
 
 ```R
-source("https://install-github.me/treasure-data/RTD@v0.4.0")
+source("https://install-github.me/treasure-data/RTD@v0.4.1")
 ```
 
 ## Example
