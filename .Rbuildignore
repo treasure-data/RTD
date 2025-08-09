@@ -12,3 +12,4 @@
 ^RTD.Rcheck$
 ^.java-version$
 ^.github$
+^SECURITY\.md$
