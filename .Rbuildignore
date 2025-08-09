@@ -12,3 +12,7 @@
 ^RTD.Rcheck$
 ^.java-version$
 ^.github$
+^SECURITY\.md$
+^\.git$
+^\.gitignore$
+^.*\.Rcheck$
