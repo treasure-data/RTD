@@ -1,7 +1,7 @@
 Package: RTD
 Title: Simple TD API Client
-Version: 0.4.1.900
-Author: Aki Ariga <ariga@treasure-data.com>
+Version: 0.4.2
+Author: Aki Ariga [aut, cre, cph]
 Authors@R: 
     person(given = "Aki",
            family = "Ariga",
@@ -16,7 +16,7 @@ License: Apache License 2.0 | file LICENSE
 Encoding: UTF-8
 URL: https://github.com/treasure-data/RTD
 BugReports: https://github.com/treasure-data/RTD/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.3
 Collate: 
     'TdClient.R'
     'bulk_import.R'

@@ -1,3 +1,7 @@
+# RTD 0.4.2
+
+* Fixed tests
+
 # RTD 0.4.1
 
 * Resubmit for CRAN. Only document update.

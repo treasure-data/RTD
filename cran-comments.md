@@ -1,33 +1,20 @@
 ## Test environments
 
-* local OS X install, darwin19.5.0-4.0.2
-* GitHub Actions: windows-latest (release), macOS-latest (release), ubuntu-16.04 (release)
-* win-builder: (devel and release)
-* r-hub: windows-x86_64-devel, ubuntu-gcc-release, fedora-clang-devel
+* local macOS install, R 4.5.2
+* GitHub Actions: windows-latest (release), macOS-latest (release), ubuntu-latest (release)
 
 ## R CMD check results
 
-There were no ERRORs or WARNINGs.
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
-There was 1 NOTE:
-
-*  checking CRAN incoming feasibility
-
-     Aki Ariga <ariga@treasure-data.com>
-   Old maintainer(s):
-     Aki Ariga <chezou@gmail.com>
-   New maintainer:
-   Maintainer: 'Aki Ariga <ariga@treasure-data.com>'
-
-This is due to change E-mail address of maintaner.
-
+R CMD check succeeded
 
 ## Downstream dependencies
 
-There is no downstream dependencies.
+There are no downstream dependencies.
 
-## Resubmission
+## Release summary
 
-This is a resubmission. In this version I have:
+This is a patch release (0.4.2) that includes:
 
-* Make relative URL absolute in README.md
+* Fixed tests
