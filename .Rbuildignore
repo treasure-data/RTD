@@ -16,3 +16,4 @@
 ^\.git$
 ^\.gitignore$
 ^.*\.Rcheck$
+^CRAN-SUBMISSION$
