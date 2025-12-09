@@ -1,6 +1,6 @@
 Package: RTD
 Title: Simple TD API Client
-Version: 0.4.2
+Version: 0.4.2.9000
 Author: Aki Ariga [aut, cre, cph]
 Authors@R: 
     person(given = "Aki",
